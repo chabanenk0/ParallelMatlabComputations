@@ -78,7 +78,7 @@ if (strcmp($arh_letters,"rar")==0)
 //$commandstring="unrar x -y ".$filename." *.* ".$newfolder2extract." >nul";
 $commandstring="unrar x -y ".$filename." ".$newfolder2extract." >nul";
 else if (strcmp($arh_letters,"zip")==0)
-$commandstring="unzip ".$filename." -o -d ".$newfolder2extract." >nul";
+$commandstring="unzip ".$filename." -d ".$newfolder2extract." >nul";
 //echo "<p>$commandstring<p>";
 system($commandstring);
 

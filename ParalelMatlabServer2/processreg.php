@@ -24,8 +24,9 @@ if ($f)
  {
  $num_res=$f['maxid'];
  $id=$num_res;
+ //echo "test id=$id <p>\n";
 } 
-
+}
 else
 {
 $flag_new_process=1;
@@ -38,7 +39,7 @@ if ($r)
  }
 $id=$num_res+1;
 }
-}
+
 $ip=$ip=$_SERVER["REMOTE_ADDR"]; 
 if ($flag_new_process)
 $r=mysql_query("insert into processes(id, regdate, regtime,  userid,  processid, platformid,ip) values($id, '$regdate','$regtime',$uid,$id,$platformid,'$ip')");
