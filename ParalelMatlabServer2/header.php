@@ -40,7 +40,7 @@ else echo "<a href=login.php>Login</a> <a href=userreg.php>New user</a>  <a href
 <td><a href=processlist.php>Рабочие станции</a></td>
 <td><a href=methodslist.php>Методы прогнозирования</a></td>
 <td><a href=datalist.php>Данные</a></td>
-<td><a href=tasklist.php>Задания</a></td>
+<td><a href=tasklist2.php>Задания</a></td>
 <td><a href=datareslist.php>Результаты</a></td>
 </tr>
 </table><p>

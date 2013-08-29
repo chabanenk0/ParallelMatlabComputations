@@ -11,7 +11,7 @@ exit;
 }
 $taskgroupid=$_REQUEST['taskgroupid'];
 mysql_select_db(DBName);
-$r=mysql_query("select * from tasksgroups where id=$taskgroupid");
+$r=mysql_query("select * from taskgroups where id=$taskgroupid");
 $f=mysql_fetch_array($r);
 $dataresultid=$f[dataresultid];
 echo "$dataresultid\n";

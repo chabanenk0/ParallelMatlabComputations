@@ -166,6 +166,6 @@ if ($pos==0)
 {
 mysql_query("insert into dataresult (id, dataid,workerid,userid,folder,taskgroupid) values($num_res,$dataid,$pid,$userid,'$fullpathname2',$taskgroupid)");
 }
-//echo "insert into dataresult (id, dataid,workerid,userid,folder) values($num_res,$dataid,$pid,$userid,'$fullpathname2')";  
+echo "insert into dataresult (id, dataid,workerid,userid,folder,taskgroupid) values($num_res,$dataid,$pid,$userid,'$fullpathname2',$taskgroupid)";
 ?>
 

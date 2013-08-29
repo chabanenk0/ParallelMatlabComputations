@@ -74,7 +74,7 @@ mysql_query("create table platforms(id int, name char(30)  ,description varchar(
 mysql_query("drop table if exists tasks");
 mysql_query("create table tasks(id int, platformid int, methodid int, dataid int, taskgroupid int, filename char(50), command varchar(1500), state char(30), done int, outfilename char(50), IP char(20), adduserid int, calcuserid int, processid int, begcalcdate date, begcalctime time , predictminutes int ,  endcalcdate date,  endcalctime time, taskgroupdata int default 0)");
 // 20130114 добавлено поле taskgroupdata int, в котором сохран€етс€ идентификатор группы заданий (таблица), результат рассчета которой будет входными данными дл€ данного задани€, кроме уже включенного
-mysql_query("drop table if exists dataresults");
+mysql_query("drop table if exists dataresult");
 mysql_query("create table dataresult(id int, dataid int, taskid int, workerid int, userid int, folder varchar(100),taskgroupid int)");
 // забыл про комменты. Ќужно наверное их добавить и дл€ методов (обсуждени€), и дл€ пользователей (лс), и, возможно, дл€ пакетов данных
 //mysql_query("use tasks");

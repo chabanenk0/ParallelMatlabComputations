@@ -3,7 +3,6 @@
 include "settings.php";
 echo "Creating matrix\n";
 $basesdir=getcwd();
-echo "cwd=$basesdir<br>\n";
 if(!mysql_connect(HostName,UserName,Password))
 { echo "Не могу соединиться с базой".DBName."!<br>";
 echo mysql_error();
@@ -11,7 +10,7 @@ exit;
 }
 mysql_select_db(DBName);
 //mysql_query("USE matrix;");
-set_time_limit(6000); 
+set_time_limit(600); 
 $sgroupid=$_REQUEST['g']; // ид группы рядов, для которых требуется посчитать прогноз.
 //if (isempty($sgroupid)) 
 //$sgroupid=1;
@@ -33,7 +32,6 @@ for($j=0; $j<$num_res; $j++)
  $r1=mysql_query("select * from datasources where id=$cursource");
  $f1=mysql_fetch_array($r1);
  $url4query=$f1['urltemplate'];
- $importquery=$f1['importquery'];
  $upddate=$f[upddate];
  $updtime=$f[updtime];
  $updday=substr($upddate,8,2);
@@ -50,7 +48,6 @@ for($j=0; $j<$num_res; $j++)
  $url4query=str_replace('@DayBeg@',$updday,$url4query);
  $url4query=str_replace('@MonthBeg@',$updmonth,$url4query);
  $url4query=str_replace('@YearBeg@',$updyear,$url4query);
-
  $endDay=$updday;
  $endMonth=$updmonth+1;
  $endYear=$updyear;
@@ -65,24 +62,15 @@ for($j=0; $j<$num_res; $j++)
  $url4query=str_replace('@YearEnd@',$endYear,$url4query);
  echo "Downloading data from url: $url4query<p>\n";
  $command="wget  --proxy=on  -ehttp_proxy=http://192.168.0.10:3128 -O \"$curname.txt\" \"$url4query\"";
- //$command="wget -O \"$curname.txt\" \"$url4query\"";
+ $command="wget -O \"$curname.txt\" \"$url4query\"";
 // rem set path=%path%;E:\softSince20090830\wget\wget-1.10.2b\
 //set path=%path%;I:\20120618_bases\wget-1.10.2b
  system("set path=%path%;D:\\dshared\\FromF\\wget\\wget-1.10.2b\\");
- echo "command=$command<p>\n";
+ echo "command=$command<p>";
  system($command);
- //$query1="LOAD DATA LOCAL INFILE \"$curname.txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' (name, discr, date, time, open,low,high,close,volume);";
- // for finance_yahoo_com
- $fpath='/home/localhost/www/TS/';
- $query1="LOAD DATA LOCAL INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  содержит список имен полей в скобках обычным текстом. Для разных источников можно поменять...
+ $query1="LOAD DATA LOCAL INFILE \"$curname.txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' (name, discr, date, time, open,low,high,close,volume);";
  echo  $query1."\n";
- $res=mysql_query($query1);
- if (!$res)
- { echo "Ошибка выполнения запроса:";
-   echo mysql_error();
-   echo "<br>\n";
- }
-
+ mysql_query($query1);
  $query2="UPDATE allrecords set tickernum=$curnum WHERE tickernum is NULL;";
  echo  $query2."\n";
  mysql_query($query2);

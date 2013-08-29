@@ -10,7 +10,7 @@ if(!mysql_connect(HostName,UserName,Password))
 echo mysql_error();
 exit;
 }
-$userar=1; //1 - use rar, 0 - use zip
+$userar=0; //1 - use rar, 0 - use zip
 set_time_limit(600);
 $id=$_REQUEST['id'];
 $result=$_REQUEST['result'];
@@ -165,8 +165,8 @@ for ($i=0;$i<$n;$i++)
    system("del /q indexhtmldir\*.*");
    }else
    {
-   system("unlink result/*.*");
-   system("unlink indexhtmldir/*.*");
+   system("rm -rf result");
+   system("rm -rf indexhtmldir");
    }   
    rmdir ("result");
    rmdir ("indexhtmldir");

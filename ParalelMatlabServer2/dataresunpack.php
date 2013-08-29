@@ -12,6 +12,8 @@ exit;
 }
 $num=$_REQUEST['id'];
 $location=dataresunpack($num,$uploaddirroot);
-header("Location: $location");
+$location2=str_replace($uploaddirroot,"/uploads/",$location);
+//echo $location2;
+header("Location: $location2");
 
 ?>
