@@ -20,5 +20,6 @@ putting the database names and user/pass information
 - correct ParalelMatlabServer2/clear.php change the row  if ((isset($_COOKIE['uid']))&&($_COOKIE['uid']==1)) to  if (1)//(isset($_COOKIE['uid']))&&($_COOKIE['uid']==1))
 - run ParalelMatlabServer2/clear.php
 - run TS/clear.php
+- correct back ParalelMatlabServer2/clear.php remain the row if ((isset($_COOKIE['uid']))&&($_COOKIE['uid']==1)) 
 
 Go to the browser, request the folder 
