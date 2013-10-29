@@ -28,7 +28,8 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
- 
+require("pChart/pChart/pData.class");
+require("pChart/pChart/pChart.class");
 
 $info = array(
     /**
@@ -40,22 +41,16 @@ $info = array(
     /*
      *
      */
-    'name' => array(CAPTION => 'name', SHOWCOLUMN=>true ),
-    'number' => array(CAPTION => 'number', SHOWCOLUMN=>true ),
-    'groupnum' => array(CAPTION => 'groupnum', SHOWCOLUMN=>true ),
-    'source' => array(CAPTION => 'source', TABLE => "datasources", ID => "id", TEXT => "name", SHOWCOLUMN=>true),
-    'upddate' => array(CAPTION => 'upddate', SHOWCOLUMN=>true ),
-    'updtime' => array(CAPTION => 'updtime', SHOWCOLUMN=>true ),
-    'type' => array(CAPTION => 'type', SHOWCOLUMN=>true ),
-    'discretization' => array(CAPTION => 'discretization', SHOWCOLUMN=>true ),
-    'seriesname' => array(CAPTION => 'seriesname', SHOWCOLUMN=>true ),
-    'sector' => array(CAPTION => 'sector', SHOWCOLUMN=>true ),
-    'color' => array(CAPTION => 'color', SHOWCOLUMN=>true ),
     /*
      *
      *
      */
-    // 'country' => array(CAPTION => 'Contry', TABLE => "table_2", ID => "countryId", TEXT => "countryName", SHOWCOLUMN=>true),
+     //'id' => array(CAPTION => 'id', SHOWCOLUMN=>true),
+     'resultid' => array(CAPTION => 'resultid', TABLE => "resultseries", ID => "id", TEXT => "name", SHOWCOLUMN=>true),
+     'position' => array(CAPTION => 'position', SHOWCOLUMN=>true),
+     'c1' => array(CAPTION => 'c1', SHOWCOLUMN=>true),
+     'c2' => array(CAPTION => 'c2', SHOWCOLUMN=>true),
+     'c3' => array(CAPTION => 'c3', SHOWCOLUMN=>true),
     /*
      *
      *
@@ -72,10 +67,61 @@ $info = array(
     EDIT_LINK => "?action=update&id=%id",
     DELETE_LINK => "?action=delete&id=%id"
 );
-$crud = new crud("mysql://root@localhost/TS","dataseries",$info);
+$crud = new crud("mysql://root@localhost/TS","resultseriesdata",$info);
+if (($_GET['action']=='new')&&(array_key_exists('c1',$_POST)))
+            {
+$new_id=($crud->create());
+echo "$new_id";
+return 0;
+}
+
+if ($_GET['action']=='csv') {
+    $filename=$_GET['filter'];
+    $filename=str_replace('resultid=','',$filename);
+    $filename=$filename.".txt";
+    header('Content-type:file/binary');
+    header("Content-Disposition: attachment; filename=\"$filename\"");
+    $crud->read_csv($_GET['filter'],$_GET['columnname']);
+    //echo "$new_id";
+    return 0;
+}
+if ($_GET['action']=='plot') {
+    $filename=$_GET['filter'];
+    $filename=str_replace('resultid=','',$filename);
+    $filename=$filename.".png";
+    //header('Content-type:file/binary');
+    //header("Content-Disposition: attachment; filename=\"$filename\"");
+    $data=$crud->read_data_array($_GET['filter'],$_GET['columnname']);
+    $DataSet = new pData;
+    $DataSet->AddPoint($data,"Serie1");
+    $DataSet->AddAllSeries();
+    // Initialise the graph   
+    $Test = new pChart(700,230);
+    $Test->setFontProperties("pChart/Fonts/tahoma.ttf",8);   
+    $Test->setGraphArea(70,30,680,200);   
+    $Test->drawFilledRoundedRectangle(7,7,693,223,5,240,240,240);   
+    $Test->drawRoundedRectangle(5,5,695,225,5,230,230,230);   
+    $Test->drawGraphArea(255,255,255,TRUE);
+    $Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_NORMAL,150,150,150,TRUE,0,2);   
+    $Test->drawGrid(4,TRUE,230,230,230,50);
+    // Draw the 0 line   
+    $Test->setFontProperties("pChart/Fonts/tahoma.ttf",6);   
+    $Test->drawTreshold(0,143,55,72,TRUE,TRUE);   
+    // Draw the line graph
+    $Test->drawLineGraph($DataSet->GetData(),$DataSet->GetDataDescription());   
+    $Test->drawPlotGraph($DataSet->GetData(),$DataSet->GetDataDescription(),3,2,255,255,255);   
+    // Finish the graph   
+    $Test->setFontProperties("pChart/Fonts/tahoma.ttf",8);   
+    $Test->drawLegend(75,35,$DataSet->GetDataDescription(),255,255,255);   
+    $Test->setFontProperties("pChart/Fonts/tahoma.ttf",10);   
+    $Test->drawTitle(60,22,"example 1",50,50,50,585);   
+    $Test->Render($filename);
+	echo "<img src=$filename>";
+    return 0;
+}
 ?>
-<h1>CRUD for Dataseries table</h1>
-<h2><a href='?action=new'>Add a new dataseries</a> | <a href='?'>View</a> | <a href='?action=uploadCSV'>Upload CSV</a> </h2>
+<h1>CRUD for resultseries (data) table</h1>
+<h2><a href='?action=new'>Add a new result series data record </a> | <a href='?'>View</a></h2>
 
 <?php
 switch ( $_GET['action'] ) {
@@ -92,12 +138,8 @@ switch ( $_GET['action'] ) {
         if ( $crud->update(array('id' => $_GET['id']) ) == true)
             echo "A data was updated";
         break;
-    case 'uploadCSV':
-        if ( $crud->uploadCSV(array('file' => $_FILES['tmp_name']) ) == true)
-            echo "A data was uploaded from the file " . $_FILES['name'] .".";
-		break;
     default:
-        $crud->read();
+        $crud->read($_GET['filter']);
         break;
 }
 ?>

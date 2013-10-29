@@ -68,22 +68,23 @@ echo "Creating tables";
 // - последнее обновление
 // - вид (опен клоуз или поток сделок (тиковый источник)
 // - строка импорта (задает порядок строк, пропуски строк в исходнике)... Буду вручную задавать сначала.
+// Импортквери  содержит только последнюю строку запроса, отвечающую за последовательность полей...
 mysql_query("drop table if exists datasources");
 mysql_query("create table datasources(id int not null auto_increment primary key, name char(20), number int, groupnum int, urltemplate varchar (200), importquery varchar(200))");
-mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'Yahoo finance',1,1,'http://ichart.yahoo.com/table.csv?s=@NAME@&a=@DayBeg@&b=@MonthBeg@&c=@YearBeg@&d=@DayEnd@&e=@MonthEnd@&f=@YearEnd@&g=d&ignore=.csv','')");
+mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'Yahoo finance',1,1,'http://ichart.finance.yahoo.com/table.csv?s=@NAME@&a=@DayBeg@&b=@MonthBeg@&c=@YearBeg@&d=@DayEnd@&e=@MonthEnd@&f=@YearEnd@&g=d&ignore=.csv','(date, open,high,low,close,volume,adjclose)')");
 //wget  --proxy=on  -O LLTC.txt "http://ichart.yahoo.com/table.csv?s=LLTC&a=00&b=1&c=1900&d=19&e=6&f=2099&g=d&ignore=.csv"
 
-mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX days',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=1440&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','')");
+mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX days',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=1440&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','(name, discr, date, time, open,low,high,close,volume)')");
 
-mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX Hours',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=60&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','')");
+mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX Hours',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=60&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','(name, discr, date, time, open,low,high,close,volume)')");
 
-mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX minutes',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=1&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','')");
+mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX minutes',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=1&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','(name, discr, date, time, open,low,high,close,volume)')");
 
-mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX 5 minutes',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=5&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','')");
+mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX 5 minutes',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=5&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','(name, discr, date, time, open,low,high,close,volume)')");
 
-mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX 15 minutes',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=15&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','')");
+mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX 15 minutes',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=15&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','(name, discr, date, time, open,low,high,close,volume)')");
 
-mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX 30 minutes',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=30&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','')");
+mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX 30 minutes',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=30&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','(name, discr, date, time, open,low,high,close,volume)')");
 
 //wget  --proxy=on  -ehttp_proxy=http://192.168.0.10:3128 -O BAVL.txt "mdata.ux.ua/qdata.aspx?code=BAVL&pb=01012009&pe=08072099&p=1440&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1"
 
@@ -134,7 +135,7 @@ mysql_query("CREATE TABLE allrecords_tick(tickernum int,date DATE, time TIME, da
 
 // таблица групп рядов (чтобы задавать задание прогнозировать для всей группы.
 mysql_query("drop table if exists seriesgroups");
-mysql_query("create table seriesgroups(id int not null auto_increment primary key, name char(20), descrition varchar(200))");
+mysql_query("create table seriesgroups(id int not null auto_increment primary key, name char(20), description varchar(200))");
 mysql_query("insert into seriesgroups(name , description) values( 'UX','UX for forecasting')");
 
 mysql_query("insert into seriesgroups(name , description) values( 'UX_H','UX hour for forecasting')");
@@ -159,13 +160,17 @@ mysql_query("drop table if exists groupsmethods");
 mysql_query("create table groupsmethods(id int not null auto_increment primary key, groupid int, methodid int,type_precommand int, precommands varchar(1500))");
 // type_precommand - tip komandy. 0 - eto novy shablon (vmesto starogo is methods) 1 - stary shablon, a komanda dobavlyaetsya v nachalo...
 
-$commandnew="MarkovChainsUsredn('#infile.txt',[],500,50,'',[],1,'global type_prirash;type_prirash=1;global type_raspr;type_raspr=5;');";
+// 20130320 ;  global   type_raspr;  type_raspr = 5 ; global   limitdt ; limitdt = 5 ; global   limitdt _ min ; limitdt _ min = 0 ;  '  )  ;
+//  global limitdt;limitdt=5;global limitdt_min;limitdt_min=0;
+// добавление дтмин, дтмакс...
+$commandnew="MarkovChainsUsredn('#infile.txt',[],500,50,'',[],1,'global type_prirash;type_prirash=1;global type_raspr;type_raspr=5;global limitdt;limitdt=5;global limitdt_min;limitdt_min=0;');";
 $commandnew=rawurlencode($commandnew);
 mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(1,12,0,'$commandnew')");
-$commandnew="MarkovChainsUsredn('#infile.txt',[],2000,250,'',[],1,'global type_prirash;type_prirash=1;global type_raspr;type_raspr=5;');";
+$commandnew="MarkovChainsUsredn('#infile.txt',[],2000,250,'',[],1,'global type_prirash;type_prirash=1;global type_raspr;type_raspr=5;global limitdt;limitdt=5;global limitdt_min;limitdt_min=0;');";
 $commandnew=rawurlencode($commandnew);
 mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(2,12,0,'$commandnew')");
-$commandnew="global limitdt;limitdt=260;global limitdt_min;limitdt_min=3;global type_prirash;type_prirash=1;MarkovChainsCmd('#infile.txt',500,'#infile_MarkovPrognoz.txt');";
+// 20130320 Добавил не 500, а 1500 минут. 
+$commandnew="global limitdt;limitdt=260;global limitdt_min;limitdt_min=3;global type_prirash;type_prirash=1;MarkovChainsCmd('#infile.txt',1500,'#infile_MarkovPrognoz.txt');";
 $commandnew=rawurlencode($commandnew);
 
 mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(3,12,1,'$commandnew')");
@@ -198,7 +203,7 @@ mysql_query("CREATE TABLE matrixdata(id int not null auto_increment primary key,
 // - номер матрицы (связь с таблицей матрицы)
 // - номер ряда (связь с таблицей опен-клоуз)
 // - номер ряда в матрице (целое число)
-mysql_query("CREATE TABLE matrixseries(matrixnum int, seriesnum int, position int)");
+mysql_query("CREATE TABLE matrixseries(matrixnum int, seriesnum int, position int,c int, firstdate DATE, firsttime TIME, lastdate DATE, lasttime TIME)");
 
 // 6) и другие - временные таблицы
 // - дата
@@ -206,4 +211,8 @@ mysql_query("CREATE TABLE matrixseries(matrixnum int, seriesnum int, position in
 // - ряд2 (клоуз из ряда2)...
 // - и т.д.
 
-?>
+mysql_query("CREATE TABLE resultseries(id int not null auto_increment primary key,lastdate DATE, lasttime TIME, name char(20), type int)");
+
+mysql_query("CREATE TABLE resultseriesdata(id int not null auto_increment primary key,resultid int, position int, c1 double,c2 double,c3 double)");
+
+?>                                                               

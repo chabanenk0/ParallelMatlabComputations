@@ -42,10 +42,16 @@ define("ID","id");
 define("TEXT", "text");
 define("SELECT","select");
 define("SHOWCOLUMN","showc");
-define("EDIT_TEXT",0xFF454);
+define("EDIT_TEXT",  0xFF454);
 define("DELETE_TEXT",0xFF5454);
-define("EDIT_LINK", 0xFF4544);
-define("DELETE_LINK", 0xFF4545);
+define("VIEW_TEXT",  0xFF45454);
+define("CSV_TEXT",   0xFF55458);
+define("PLOT_TEXT",  0xFF65454);
+define("EDIT_LINK",  0xFF4544);
+define("DELETE_LINK",0xFF4545);
+define("VIEW_LINK",  0xFF545454);
+define("CSV_LINK",   0xFF455454);
+define("PLOT_LINK",  0xFF465454);
 define("UPDATE_READ_ONLY","ronlyupdate");
 define("INSERT_HIDE","inserthide");
 define("ROW_ID","number_0x45dsa4654das654da64dsa654da");
@@ -102,7 +108,7 @@ class crud {
         $this->getTableInformation();
     }
 
-    function doQuery($filter) {
+    function doQuery($filter, $limit=1) {
         $res  =  &$this->result;
         $dba  =  &$this->dba;
         $info =  &$this->formParams;
@@ -111,7 +117,11 @@ class crud {
 
         $f = $filter == '' ? '' : ' where '.$filter;
 
-        $result = $dba->query("select * from ".$this->table." $f limit 0,20");
+        if ($limit)
+		    $result = $dba->query("select * from ".$this->table." $f limit 0,20");
+		else
+		    $result = $dba->query("select * from ".$this->table." $f");
+
         if ($result) {
             while( $r = $result->getNext() ) {
                 $res[] = $r;
@@ -147,6 +157,7 @@ class crud {
             if ( is_array($default) && count($default) > 0) {
                 $input["VALUE"] = $default[$k];
             }
+			echo "input=";print_r($input);echo "<br>\n";
             echo $form->AddInput( $input );
         }
 
@@ -187,7 +198,15 @@ class crud {
             $dba->compile($sql);
 
             $f = $dba->execute($_POST);
-            if ( $f ) return true;
+            if ( $f ) 
+               {// (c) Chab: we should return not only True, but the last ID added
+			   $rec1 = $dba->query("select max(id) as maxid from ".$this->table);
+			   if ( !$rec1 ) return false;
+               $f = $rec1->getNext();
+               return  $f['maxid' ]; 
+			    //return true;
+				// end (c) Chab
+               }
             else {
                $str = $dba->getLastError();
 
@@ -211,6 +230,8 @@ class crud {
 
     function update($arr) {
         if ( !is_array($arr) ) return false;
+
+		
         $filter=Array();
         foreach($arr as $k=>$v) {
             $filter[] ="$k = \"".addslashes($v)."\"";
@@ -219,7 +240,121 @@ class crud {
         $this->doQuery(implode(" && ",$filter));
 
         return $this->generic_form_crud( $this->result[0], true, implode(" && ",$filter) );
+    }
+	
+    function uploadCSV($tmpfile) {
+        if ( !isset($tmpfile) ) {
+            return false;
+		}
+        $form = new form_class;
+        $form->NAME="crud_form";
+        $form->METHOD="POST";
+        $form->ACTION="";
+        $form->ENCTYPE="multipart/form-data";
+	    $form->debug="trigger_error";
+        $form->ResubmitConfirmMessage="Are you sure you want to submit this form again?";
+        $form->OptionsSeparator="<br />\n";
+	
+    	$form->AddInput(array(
+	    	"TYPE"=>"file",
+			"NAME"=>"userfile",
+			"ACCEPT"=>"image/gif",
+			"ValidateAsNotEmpty"=>1,
+			"ValidationErrorMessage"=>"It was not specified a valid file to upload"
+		));
+		$form->AddInput(array(
+			"TYPE"=>"submit",
+			"VALUE"=>"Upload",
+			"NAME"=>"doit"
+		));
+		$form->AddInput(array(
+			"TYPE"=>"hidden",
+			"NAME"=>"MAX_FILE_SIZE",
+			"VALUE"=>1000000
+		));
+	    $form->LoadInputValues($form->WasSubmitted("doit"));
+		$verify=array();
+	    if($form->WasSubmitted("doit"))
+	    {
+		    if(($error_message=$form->Validate($verify))=="")
+			    $doit=1;
+		    else
+		    {
+			    $doit=0;
+			    $error_message=HtmlEntities($error_message);
+		    }
+	    }
+	    else
+	    {
+		    $error_message="";
+		    $doit=0;
+	    }
 
+	    if(!$doit)
+	    {
+		    if(strlen($error_message))
+		    {
+			    Reset($verify);
+			    $focus=Key($verify);
+		    }
+		    else
+			    $focus='userfile';
+		    $form->ConnectFormToInput($focus, 'ONLOAD', 'Focus', array());
+        }		
+    	$onload=HtmlSpecialChars($form->PageLoad());
+		echo "<body onload=' $onload ' bgcolor='#cccccc'>";
+  	    if($doit)
+	    {
+		$form->GetFileValues("userfile",$userfile_values);
+		$tmp_name = $userfile_values["tmp_name"];
+		$filename = HtmlEntities($userfile_values["name"]);
+		echo "filename=$filename, tmp_name=$tmp_name <br>\n";
+		//Нужно придумать какую-то процедуру-метод приватную, которая бы добавляла в БД запись по одной или весь файл. 
+//А то длинный получится кусок...
+
+			/*
+            $dba  = & $this->dba;
+            $sql = "";
+            $columns=array();
+            foreach($this->formParams as $k=>$v) {
+                if ( $k == ROW_ID || $k == INPUT_DOIT || $k == INPUT_SUBMIT) continue;
+                $columns[] = $k;
+            }
+            $sql = sprintf(INSERT_SQL,  $this->table,implode(", ",$columns),":".implode(", :",$columns));
+            
+            $dba->compile($sql);
+
+            $f = $dba->execute($_POST); // не пост, а данные файла нужно вычитывать
+            if ( $f ) 
+               {
+			    return true;
+               }
+            else {
+               $str = $dba->getLastError();
+
+               if ( substr(strtolower($str),0,9) == "duplicate") {
+                    $error_message="Duplicated data";
+                    $s = strpos($str,"'")+1;
+                    $e = strpos($str,"'",$s);
+                    $err = trim( substr($str,$s,$e-$s) );
+                    foreach($columns as $k => $v) {
+                        if ( $err == $_POST[$v])  {
+                            $verify[$v] = $v;
+                        }
+                    }
+               }
+            }
+			*/		
+  		}
+		else
+  	  	{
+	  		$form->StartLayoutCapture();
+		  	$title="Form upload file test";
+		  	$body_template="form_upload_body.html.php";
+		  	include("formsgeneration/templates/form_frame.html.php");
+		  	$form->EndLayoutCapture();
+		  	$form->DisplayOutput();
+	  	}
     }
 
     function delete($arr) {
@@ -271,17 +406,84 @@ class crud {
                 }
                 $edit_url = $definitions[EDIT_LINK];
                 $del_url  = $definitions[DELETE_LINK];
+				// (chab) new links in the table
+				$view_url  = $definitions[VIEW_LINK];
+				$csv_url  = $definitions[CSV_LINK];
+				$plot_url  = $definitions[PLOT_LINK];
+				// (chab) new links in the table
                 foreach($r as $k => $v) {
                     $edit_url = str_replace('%'.$k, $v, $edit_url);
                     $del_url  = str_replace('%'.$k, $v, $del_url);
+					// (chab) new links in the table
+					$view_url  = str_replace('%'.$k, $v, $view_url);
+					$csv_url  = str_replace('%'.$k, $v, $csv_url);
+					$plot_url  = str_replace('%'.$k, $v, $plot_url);
+					// (chab) new links in the table
                 }
-                echo '<td><a href="'.$edit_url.'">'.$definitions[EDIT_TEXT].'</a> - <a href="'.$del_url.'">'.$definitions[DELETE_TEXT].'</a></td>';
-                echo "</tr>";
+                echo '<td><a href="'.$edit_url.'">'.$definitions[EDIT_TEXT].'</a> - <a href="'.$del_url.'">'.$definitions[DELETE_TEXT].'</a>';
+				// (c) chab Other actions: view contents, download csv, view plot
+				if (isset($view_url))
+				 echo '- <a href="'.$view_url.'">'.$definitions[VIEW_TEXT].'</a>';
+				if (isset($csv_url))
+				 echo '- <a href="'.$csv_url.'">'.$definitions[CSV_TEXT].'</a>';
+				if (isset($plot_url))
+				 echo '- <a href="'.$plot_url.'">'.$definitions[PLOT_TEXT].'</a>';
+				// (c) chab
+                echo "</td></tr>";
             }
         }
         echo '</table>';
     }
+    /**
+     *  READ
+     *  @param string $filter SQL filter.
+     */
+    function read_csv($filter='',$fieldonly='') {
+        $this->doQuery($filter, 0);
 
+        $res  = & $this->result;
+        $info = & $this->formParams;
+        $definitions = & $this->tableDefinition;
+
+        if ( is_array($res) ) {
+           foreach($res as $k => $r) {
+                foreach($definitions as $k => $v) {
+                    if ( ! isset($v[SHOWCOLUMN]) || !$v[SHOWCOLUMN]) continue;
+					// echo $v[CAPTION].' ';
+					if ((strlen($fieldonly)>0)&&($v[CAPTION]!=$fieldonly)) continue;
+                    $text = isset($info[$k]["OPTIONS"][$r[$k]]) ? $info[$k]["OPTIONS"][$r[$k]] : $r[$k];
+                    echo $text."\t";
+                }
+                echo "\n";
+            }
+        }
+    }
+
+    function read_data_array($filter='',$fieldonly='') {
+        $this->doQuery($filter);
+
+        $res  = & $this->result;
+        $info = & $this->formParams;
+        $definitions = & $this->tableDefinition;
+		$result_data=array();
+
+        if ( is_array($res) ) {
+           foreach($res as $k => $r) {
+                foreach($definitions as $k => $v) {
+                    if ( ! isset($v[SHOWCOLUMN]) || !$v[SHOWCOLUMN]) continue;
+					// echo $v[CAPTION].' ';
+					if ((strlen($fieldonly)>0)&&($v[CAPTION]!=$fieldonly)) continue;
+                    $text = isset($info[$k]["OPTIONS"][$r[$k]]) ? $info[$k]["OPTIONS"][$r[$k]] : $r[$k];
+                    //echo $text."\t";
+					array_push($result_data, $text);
+                }
+                //echo "\n";
+            }
+			return $result_data;
+        }
+    }
+	
+	
     /**
      *  Generate a basic template for the form.
      *
@@ -362,12 +564,12 @@ class crud {
             if (isset($actInfo[TABLE]) && isset($actInfo[ID]) && isset($actInfo[TEXT])) {
                 $form["TYPE"] = "select";
                 $opt = & $form["OPTIONS"];
-				//// (�) chab. Added if the connected table is from the separate database
+				//// (С) chab. Added if the connected table is from the separate database
 				if (isset($actInfo['DATABASE']))
 				  mysql_select_db($actInfo['DATABASE']);
 				else
 				  mysql_select_db($dba->info['db']);				
-				//// (�) chab. Added if the connected table is from the separate database
+				//// (С) chab. Added if the connected table is from the separate database
 				
                 $rec1 = $dba->query("select ".$actInfo[ID].",".$actInfo[TEXT]." from ".$actInfo[TABLE]);
                 if ( !$rec1 ) continue;
@@ -375,10 +577,10 @@ class crud {
                     if ( !isset($form["VALUE"]) ) $form["VALUE"]= $f[$actInfo[ID] ]; 
                     $opt[ $f[$actInfo[ID] ] ] = $f[ $actInfo[TEXT] ];
                 }
-				//// (�) chab. Added if the connected table is from the separate database
+				//// (С) chab. Added if the connected table is from the separate database
 				if (isset($actInfo['DATABASE']))
 				  mysql_select_db($dba->info['db']);
-				//// (�) chab. Added if the connected table is from the separate database				
+				//// (С) chab. Added if the connected table is from the separate database				
             } else if ( isset($actInfo[SELECT]) ){
                 $form["TYPE"] = "select";
                 $form["OPTIONS"] = $actInfo[SELECT];

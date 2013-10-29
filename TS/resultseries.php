@@ -29,7 +29,6 @@
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
  
-
 $info = array(
     /**
      *  Show column => visible on read
@@ -40,22 +39,15 @@ $info = array(
     /*
      *
      */
-    'name' => array(CAPTION => 'name', SHOWCOLUMN=>true ),
-    'number' => array(CAPTION => 'number', SHOWCOLUMN=>true ),
-    'groupnum' => array(CAPTION => 'groupnum', SHOWCOLUMN=>true ),
-    'source' => array(CAPTION => 'source', TABLE => "datasources", ID => "id", TEXT => "name", SHOWCOLUMN=>true),
-    'upddate' => array(CAPTION => 'upddate', SHOWCOLUMN=>true ),
-    'updtime' => array(CAPTION => 'updtime', SHOWCOLUMN=>true ),
-    'type' => array(CAPTION => 'type', SHOWCOLUMN=>true ),
-    'discretization' => array(CAPTION => 'discretization', SHOWCOLUMN=>true ),
-    'seriesname' => array(CAPTION => 'seriesname', SHOWCOLUMN=>true ),
-    'sector' => array(CAPTION => 'sector', SHOWCOLUMN=>true ),
-    'color' => array(CAPTION => 'color', SHOWCOLUMN=>true ),
     /*
      *
      *
      */
-    // 'country' => array(CAPTION => 'Contry', TABLE => "table_2", ID => "countryId", TEXT => "countryName", SHOWCOLUMN=>true),
+     //'id' => array(CAPTION => 'id', SHOWCOLUMN=>true),
+     'lastdate' => array(CAPTION => 'lastdate', SHOWCOLUMN=>true),
+     'lasttime' => array(CAPTION => 'lasttime', SHOWCOLUMN=>true),
+     'name' => array(CAPTION => 'name', SHOWCOLUMN=>true),
+     'type' => array(CAPTION => 'type', SHOWCOLUMN=>true), // нужно бы связь с таблицей... 
     /*
      *
      *
@@ -69,19 +61,34 @@ $info = array(
 
     EDIT_TEXT => "Edit",
     DELETE_TEXT => "Delete",
+    VIEW_TEXT => "View data",
+    CSV_TEXT => "Download CSV",
+    PLOT_TEXT => "View chart",
     EDIT_LINK => "?action=update&id=%id",
-    DELETE_LINK => "?action=delete&id=%id"
+    DELETE_LINK => "?action=delete&id=%id",
+    VIEW_LINK => "resultseriesdata.php?filter=resultid=%id",
+    CSV_LINK => "resultseriesdata.php?action=csv&columnname=c1&filter=resultid=%id",
+    PLOT_LINK => "resultseriesdata.php?action=plot&filter=resultid=%id"
 );
-$crud = new crud("mysql://root@localhost/TS","dataseries",$info);
+$crud = new crud("mysql://root@localhost/TS","resultseries",$info);
+//print_r($_POST);
+if (($_GET['action']=='new')&&(array_key_exists('name',$_POST)))
+          {
+$new_id=($crud->create());
+echo "$new_id";
+return 0;
+}
+
+
 ?>
-<h1>CRUD for Dataseries table</h1>
-<h2><a href='?action=new'>Add a new dataseries</a> | <a href='?'>View</a> | <a href='?action=uploadCSV'>Upload CSV</a> </h2>
+<h1>CRUD for resultseries table</h1>
+<h2><a href='?action=new'>Add a new result series </a> | <a href='?'>View</a></h2>
 
 <?php
 switch ( $_GET['action'] ) {
     case 'new':
-        if ( $crud->create() ) {
-            echo " A new data was added";
+        if ($new_id=$crud->create() ) {
+            echo "$new_id";
         }
         break;
     case 'delete';
@@ -92,10 +99,6 @@ switch ( $_GET['action'] ) {
         if ( $crud->update(array('id' => $_GET['id']) ) == true)
             echo "A data was updated";
         break;
-    case 'uploadCSV':
-        if ( $crud->uploadCSV(array('file' => $_FILES['tmp_name']) ) == true)
-            echo "A data was uploaded from the file " . $_FILES['name'] .".";
-		break;
     default:
         $crud->read();
         break;
