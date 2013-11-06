@@ -93,6 +93,9 @@ switch ( $_GET['action'] ) {
             echo "A data was updated";
         break;
     case 'uploadCSV':
+		$info['id'][SHOWCOLUMN]=false;
+		$crud->setInfo($info);
+		//print_r($crud->tableDefinition);
         if ( $crud->uploadCSV(array('file' => $_FILES['tmp_name']) ) == true)
             echo "A data was uploaded from the file " . $_FILES['name'] .".";
 		break;

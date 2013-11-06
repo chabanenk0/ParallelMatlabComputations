@@ -113,6 +113,7 @@ class dbal {
             if (!$this->_connect_db()) {
                 return false;
             }
+			echo "dbal::sql=$sql<br>\n";
             return $this->dbm->_execute($sql);
         }
     }

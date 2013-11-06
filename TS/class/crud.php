@@ -195,6 +195,7 @@ class crud {
             } else {
                 $sql = sprintf(INSERT_SQL,  $this->table,implode(", ",$columns),":".implode(", :",$columns));
             }
+
             $dba->compile($sql);
 
             $f = $dba->execute($_POST);
@@ -305,46 +306,51 @@ class crud {
 		echo "<body onload=' $onload ' bgcolor='#cccccc'>";
   	    if($doit)
 	    {
-		$form->GetFileValues("userfile",$userfile_values);
-		$tmp_name = $userfile_values["tmp_name"];
-		$filename = HtmlEntities($userfile_values["name"]);
-		echo "filename=$filename, tmp_name=$tmp_name <br>\n";
-		//Нужно придумать какую-то процедуру-метод приватную, которая бы добавляла в БД запись по одной или весь файл. 
-//А то длинный получится кусок...
-
-			/*
+			$form->GetFileValues("userfile",$userfile_values);
+			$tmp_name = $userfile_values["tmp_name"];
+			$filename = HtmlEntities($userfile_values["name"]);
+			echo "filename=$filename, tmp_name=$tmp_name <br>\n";
+			//Нужно придумать какую-то процедуру-метод приватную, которая бы добавляла в БД запись по одной или весь файл. 
+			//А то длинный получится кусок...
             $dba  = & $this->dba;
             $sql = "";
             $columns=array();
-            foreach($this->formParams as $k=>$v) {
-                if ( $k == ROW_ID || $k == INPUT_DOIT || $k == INPUT_SUBMIT) continue;
-                $columns[] = $k;
-            }
-            $sql = sprintf(INSERT_SQL,  $this->table,implode(", ",$columns),":".implode(", :",$columns));
-            
-            $dba->compile($sql);
+			$definitions = & $this->tableDefinition;
+			foreach($definitions as $key => $value) {
+				if ( !is_array($value) || !isset($value[SHOWCOLUMN]) || !$value[SHOWCOLUMN]) continue;
+				//echo '<td>'.$value[CAPTION].'</td>';
+				$columns[] = $key;
+			}
+			//echo '<td></td>';
+			//echo '</tr>';
+			$sql = sprintf(INSERT_SQL,  $this->table,implode(", ",$columns),":".implode(", :",$columns));
+			//echo "sql=$sql<br>\n";
+			$dba->compile($sql);
 
-            $f = $dba->execute($_POST); // не пост, а данные файла нужно вычитывать
-            if ( $f ) 
-               {
-			    return true;
-               }
-            else {
-               $str = $dba->getLastError();
+			$fp=fopen($tmp_name,"r");
+			while (!feof($fp)) {
+				$line=fgets($fp);
+				$fields=explode("\t", $line);
+				$fieldsValues=array_combine($columns, $fields);
 
-               if ( substr(strtolower($str),0,9) == "duplicate") {
-                    $error_message="Duplicated data";
-                    $s = strpos($str,"'")+1;
-                    $e = strpos($str,"'",$s);
-                    $err = trim( substr($str,$s,$e-$s) );
-                    foreach($columns as $k => $v) {
-                        if ( $err == $_POST[$v])  {
-                            $verify[$v] = $v;
-                        }
-                    }
-               }
+            	$f = $dba->execute($fieldsValues); 
+            	if ( !$f ) {
+					$str = $dba->getLastError();
+					if ( substr(strtolower($str),0,9) == "duplicate") {
+						$error_message="Duplicated data";
+						$s = strpos($str,"'")+1;
+						$e = strpos($str,"'",$s);
+						$err = trim( substr($str,$s,$e-$s) );
+						foreach($columns as $k => $v) {
+							if ( $err == $_POST[$v])  {
+								$verify[$v] = $v;
+							}
+						}
+					}
+				}
             }
-			*/		
+			fclose($fp);
+					
   		}
 		else
   	  	{
@@ -682,5 +688,14 @@ class crud {
 
         return $return;
     }
-}
+	function getInfo()
+	{
+		return $this->tableDefinition;
+	}
+	function setInfo($newInfo)
+	{
+		$this->tableDefinition=$newInfo;
+	}
+
+	}
 ?>

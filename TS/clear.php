@@ -88,10 +88,13 @@ mysql_query("insert into datasources(name , number,groupnum, urltemplate,  impor
 
 //wget  --proxy=on  -ehttp_proxy=http://192.168.0.10:3128 -O BAVL.txt "mdata.ux.ua/qdata.aspx?code=BAVL&pb=01012009&pe=08072099&p=1440&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1"
 
-if(0)
+if(1)
 {
 mysql_query("drop table if exists dataseries");
-mysql_query("create table dataseries(id int not null auto_increment primary key, name char(20), number int, groupnum int, source int, upddate date , updtime time, type int, discretization int,seriesname char(30))");
+// old 20131105 
+//mysql_query("create table dataseries(id int not null auto_increment primary key, name char(20), number int, groupnum int, source int, upddate date , updtime time, type int, discretization int, seriesname char(30))");
+
+mysql_query("create table dataseries(id int not null auto_increment primary key, name char(20), number int, groupnum int, source int, upddate date , updtime time, type int, discretization int, seriesname char(30), sector char(20), color int)");
 mysql_query("insert into dataseries(name , number,groupnum, source,  type,discretization,seriesname,upddate,updtime ) values( 'UX',1,1,2,1,1440,'UX_D','2009-01-01','00:00')");
 
 mysql_query("insert into dataseries(name , number,groupnum, source,  type,discretization, seriesname,upddate,updtime) values( 'UX-C',1,1,2,1,1440,'UXC_D','2009-01-01','00:00')");
