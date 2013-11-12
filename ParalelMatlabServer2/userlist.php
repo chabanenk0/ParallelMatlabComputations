@@ -4,11 +4,11 @@ include "head_all.php";
 <title>Работа с пользователями</title>
 </head>
 <body>
-<h1> Работа с пользователями</h1>
 <?php
 include "header.php";
 ?>
 
+<h1> Работа с пользователями</h1>
 <?php
 include "settings.php";
 //include "bcrypt.php";

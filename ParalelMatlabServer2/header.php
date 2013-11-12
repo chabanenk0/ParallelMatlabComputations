@@ -29,18 +29,38 @@ else {$auth=0;$uid_cookie=0;}
 
 $uname=$f['name']." ".$f['surname'];
 if (strcmp($uname,"")==0)$uname=$f['login'];
-if ($auth==1)
-echo "Hello, $uname!!!<a href=logout.php>Logout</a><p>\n";
-else echo "<a href=login.php>Login</a> <a href=userreg.php>New user</a>  <a href=userforget.php>Forget password?</a><p>";
 ?>
 
-<table border=1>
-<tr>
-<td><a href=userlist.php>Пользователи</a></td>
-<td><a href=processlist.php>Рабочие станции</a></td>
-<td><a href=methodslist.php>Методы прогнозирования</a></td>
-<td><a href=datalist.php>Данные</a></td>
-<td><a href=tasklist2.php>Задания</a></td>
-<td><a href=datareslist.php>Результаты</a></td>
-</tr>
-</table><p>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Паралельное прогнозирование временных рядов</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+		<li><a href="userlist.php">Пользователи</a></li>
+		<li><a href="processlist.php">Рабочие станции</a></li>
+		<li><a href="methodslist.php">Методы прогнозирования</a></li>
+		<li><a href="datalist.php">Данные</a></li>
+		<li><a href="tasklist2.php">Задания</a></li>
+		<li><a href="datareslist.php">Результаты</a></li>
+		<?php
+		if ($auth==1)
+			echo "<li>Hello, $uname!!!<a href=logout.php>Logout</a></li>\n";
+		else echo "<li><a href=login.php>Login</a></li> <li><a href=userreg.php>New user</a></li> <li><a href=userforget.php>Forget password?</a></li>";
+?>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+   <div class="container">
+
+      <div class="starter-template">
