@@ -34,7 +34,10 @@ for($j=0; $j<$num_res; $j++)
  $f1=mysql_fetch_array($r1);
  $url4query=$f1['urltemplate'];
  $importquery=$f1['importquery'];
- $upddate=$f[upddate];
+ if (strlen ($importquery)<1) {
+     $importquery='(name, discr, date, time, open,low,high,close,volume)';
+ }
+  $upddate=$f[upddate];
  $updtime=$f[updtime];
  $updday=substr($upddate,8,2);
  $updmonth=substr($upddate,5,2);
@@ -73,7 +76,8 @@ for($j=0; $j<$num_res; $j++)
  system($command);
  //$query1="LOAD DATA LOCAL INFILE \"$curname.txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' (name, discr, date, time, open,low,high,close,volume);";
  // for finance_yahoo_com
- $fpath='/home/localhost/www/TS/';
+ //$fpath='/home/localhost/www/TS/';
+ $fpath=$uploaddirroot.'/../TS';
  $query1="LOAD DATA LOCAL INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  содержит список имен полей в скобках обычным текстом. Для разных источников можно поменять...
  echo  $query1."\n";
  $res=mysql_query($query1);
