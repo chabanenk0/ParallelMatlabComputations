@@ -15,4 +15,5 @@ include "indexupdgen.php";
 <p><a href=matrixseries.php>CRUD for matrixseries</a></p>
 <p><a href=allrecords.php>CRUD for allrecords</a></p>
 <p><a href=allrecords_tick.php>CRUD for allrecords_tick</a></p>
-<p><a href=resultseries.php>CRUD for allrecords_tick</a></p>
+<p><a href=resultseries.php>CRUD for resultseries</a></p>
+<p><a href=resultseriesdata.php>CRUD for resultseriesdata</a></p>

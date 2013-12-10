@@ -1,0 +1,33 @@
+BAYN.DE	0	Beiersdorf	ConsSt	30
+SIE.DE	0	Siemens  	Utilities	55
+EOAN.DE	0	E.ON	ConsSt	30
+SDF.DE	0	K+S	ConsSt	30
+ALV.DE	0	Allianz  	Financials	40
+DTE.DE	0	Deutsche Telekom	IT	45
+IFX.DE	0	INFINEON TECHNOLO N	IT	45
+DPW.DE	0	Deutsche Post	Utilities	55
+MEO.DE	0	METRO  	ConsDiscr	25
+ADS.DE	0	Adidas	ConsSt	30
+DBK.DE	0	Deutsche Bank	Financials	40
+BEI.DE	0	Baier	Materials	15
+MAN.DE	0	MAN	Utilities	55
+TKA.DE	0	ThyssenKrupp  	Utilities	55
+CBK.DE	0	Commertzbank	Financials	40
+HEN3.DE	0	Henkel	ConsSt	30
+RWE.DE	0	RWE	Energy	10
+BMW.DE	0	BMW	Industrials	20
+FRE.DE	0	Fresenius  	HealthCare	35
+MRK.DE	0	Merck  	HealthCare	35
+SAP.DE	0	SAP	IT	45
+HEI.DE	0	HeidelbergCement AG 	ConsSt	30
+MUV2.DE	0	Munich Re	Financials	40
+LHA.DE	0	Deutsche Lufthansa	Utilities	55
+FME.DE	0	Fresenius Medical Care  	HealthCare	35
+VOW3.DE	0	Volkswagen Group  ?	Industrials	20
+DAI.DE	0	Daimler	Industrials	20
+LIN.DE	0	Linde	Energy	10
+BAS.DE	0	BASF	Materials	15
+63DU.DE	0	DEUTSCHE BOERSE	Financials	40
+CON.DE	0	Continental AG	Industrials	20
+DB1.DE	0	Deutsche Boerse AG	Financials	40
+LXS.DE	0	Lanxess AG	Materials	15

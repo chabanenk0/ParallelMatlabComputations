@@ -1,0 +1,107 @@
+BA	0	Boeing Company	Industrials	20
+IBM	0	International Bus. Machines	Information Technolo	45
+KO	0	Coca Cola Co.	Consumer Staples	30
+CAT	0	Caterpillar Inc.	Industrials	20
+HPQ	0	Hewlett-Packard	Information Technolo	45
+AA	0	Alcoa Inc	Materials	15
+GE	0	General Electric	Industrials	20
+DIS	0	Walt Disney Co.	Consumer Discretiona	25
+DD	0	Du Pont (E.I.)	Materials	15
+HON	0	Honeywell Int'l Inc.	Industrials	20
+GT	0	Goodyear Tire & Rubber	Consumer Discretiona	25
+MO	0	Altria Group  Inc.	Consumer Staples	30
+MRK	0	Merck & Co.	Health Care	35
+UTX	0	United Technologies	Industrials	20
+ED	0	Consolidated Edison	Utilities	55
+MCD	0	McDonald's Corp.	Consumer Discretiona	25
+PG	0	Procter & Gamble	Consumer Staples	30
+MMM	0	3M Company	Industrials	20
+XOM	0	Exxon Mobil Corp.	Energy	10
+CVX	0	Chevron Corp.	Energy	10
+JNJ	0	Johnson & Johnson	Health Care	35
+AEP	0	American Electric Power	Utilities	55
+CNP	0	CenterPoint Energy	Utilities	55
+DTE	0	DTE Energy Co.	Utilities	55
+IP	0	International Paper	Materials	15
+MRO	0	Marathon Oil Corp.	Energy	10
+WMT	0	Wal-Mart Stores	Consumer Staples	30
+XRX	0	Xerox Corp.	Information Technolo	45
+C	0	Citigroup Inc.	Financials	40
+KR	0	Kroger Co.	Consumer Staples	30
+F	0	Ford Motor	Consumer Discretiona	25
+BMY	0	Bristol-Myers Squibb	Health Care	35
+AET	0	Aetna Inc.	Health Care	35
+LMT	0	Lockheed Martin Corp.	Industrials	20
+DOW	0	Dow Chemical	Materials	15
+PEP	0	PepsiCo Inc.	Consumer Staples	30
+CL	0	Colgate-Palmolive	Consumer Staples	30
+GD	0	General Dynamics	Industrials	20
+WY	0	Weyerhaeuser Corp.	Materials	15
+AXP	0	American Express	Financials	40
+EIX	0	Edison Int'l	Utilities	55
+EXC	0	Exelon Corp.	Utilities	55
+UNP	0	Union Pacific	Industrials	20
+LUV	0	Southwest Airlines	Industrials	20
+PCG	0	PG&E Corp.	Utilities	55
+R	0	Ryder System	Industrials	20
+FDX	0	FedEx Corporation	Industrials	20
+CSX	0	CSX Corp.	Industrials	20
+BAX	0	Baxter International Inc.	Health Care	35
+SLB	0	Schlumberger Ltd.	Energy	10
+APA	0	Apache Corp.	Energy	10
+HUM	0	Humana Inc.	Health Care	35
+COP	0	ConocoPhillips	Energy	10
+OXY	0	Occidental Petroleum	Energy	10
+PBI	0	Pitney-Bowes	Industrials	20
+RSH	0	RadioShack Corp	Consumer Discretiona	25
+LLY	0	Lilly (Eli) & Co.	Health Care	35
+GLW	0	Corning Inc.	Information Technolo	45
+PFE	0	Pfizer  Inc.	Health Care	35
+RTN	0	Raytheon Co. (New)	Industrials	20
+TXN	0	Texas Instruments	Information Technolo	45
+SO	0	Southern Co.	Utilities	55
+ETR	0	Entergy Corp.	Utilities	55
+NOC	0	Northrop Grumman Corp.	Industrials	20
+AVP	0	Avon Products	Consumer Staples	30
+CSC	0	Computer Sciences Corp.	Information Technolo	45
+HRS	0	Harris Corp.	Information Technolo	45
+HAL	0	Halliburton Co.	Energy	10
+IFF	0	International Flav/Frag	Materials	15
+THC	0	Tenet Healthcare Corp.	Health Care	35
+DE	0	Deere & Co.	Industrials	20
+MDT	0	Medtronic Inc.	Health Care	35
+ROK	0	Rockwell Automation  Inc.	Industrials	20
+JCP	0	Penney (J.C.)	Consumer Discretiona	25
+EMR	0	Emerson Electric	Industrials	20
+MAT	0	Mattel  Inc.	Consumer Discretiona	25
+NBL	0	Noble Energy  Inc	Energy	10
+CBE	0	Cooper Industries, plc	Industrials	20
+VLO	0	Valero Energy	Energy	10
+WMB	0	Williams Cos.	Energy	10
+CI	0	CIGNA Corp.	Health Care	35
+NSC	0	Norfolk Southern Corp.	Industrials	20
+CLX	0	Clorox Co.	Consumer Staples	30
+AMD	0	Advanced Micro Devices	Information Technolo	45
+APD	0	Air Products & Chemicals	Materials	15
+ABT	0	Abbott Labs	Health Care	35
+SUN	0	Sunoco  Inc.	Energy	10
+TGT	0	Target Corp.	Consumer Discretiona	25
+DUK	0	Duke Energy	Utilities	55
+ADP	0	Automatic Data Processing Inc.	Information Technolo	45
+ADM	0	Archer-Daniels-Midland	Consumer Staples	30
+BCR	0	Bard (C.R.) Inc.	Health Care	35
+HST	0	Host Hotels & Resorts	Financials	40
+NEM	0	Newmont Mining Corp. (Hldg. Co	Materials	15
+BDX	0	Becton  Dickinson	Health Care	35
+HES	0	Hess Corporation	Energy	10
+MUR	0	Murphy Oil	Energy	10
+GPC	0	Genuine Parts	Consumer Discretiona	25
+PPG	0	PPG Industries	Materials	15
+RDC	0	Rowan Cos.	Energy	10
+TSO	0	Tesoro Petroleum Co.	Energy	10
+WHR	0	Whirlpool Corp.	Consumer Discretiona	25
+MAS	0	Masco Corp.	Industrials	20
+PKI	0	PerkinElmer	Health Care	35
+GIS	0	General Mills	Consumer Staples	30
+DNB	0	Dun & Bradstreet	Industrials	20
+NUE	0	Nucor Corp.	Materials	15

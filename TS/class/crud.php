@@ -108,7 +108,7 @@ class crud {
         $this->getTableInformation();
     }
 
-    function doQuery($filter, $limit=1) {
+    function doQuery($filter, $limit=20) {
         $res  =  &$this->result;
         $dba  =  &$this->dba;
         $info =  &$this->formParams;
@@ -117,8 +117,8 @@ class crud {
 
         $f = $filter == '' ? '' : ' where '.$filter;
 
-        if ($limit)
-		    $result = $dba->query("select * from ".$this->table." $f limit 0,20");
+        if ($limit>1)
+		    $result = $dba->query("select * from ".$this->table." $f limit 0,$limit");
 		else
 		    $result = $dba->query("select * from ".$this->table." $f");
 
@@ -130,6 +130,30 @@ class crud {
             die("ERROR: ".$dba->getLastError());
         }
     }
+
+    function recordsNumber($filter)
+    {
+        $res  =  &$this->result;
+        $dba  =  &$this->dba;
+        $info =  &$this->formParams;
+
+        $definitions = & $this->tableDefinition;
+
+        $f = $filter == '' ? '' : ' where '.$filter;
+
+        $result = $dba->query("select count(id) as n from ".$this->table." $f");
+
+        if ($result) {
+            $r = $result->getNext();
+            {
+                return $r['n'];
+            }
+        } else {
+            die("ERROR: ".$dba->getLastError());
+        }
+    }
+
+
 
     /**
      *  Creates a new row.
@@ -382,16 +406,40 @@ class crud {
         return $r != false;
     }
 
+    function write_pagination_links($url, $filter, $recordsPerPage, $currentPageNumber)
+    {
+        $n=$this->recordsNumber($filter);
+        for ($i=1;$i*$recordsPerPage<$n;$i++)
+        {
+            $pageNumber=($i-1)*$recordsPerPage+1;
+            echo "<a href='$url?r=$recordsPerPage&p=$pageNumber&filter=$filter'>$i</a>\n";
+        }
+        if (empty($filter))
+            return "id>=$currentPageNumber";
+        else
+            return "id>=$currentPageNumber and $filter";
+
+
+    }
+
     /**
      *  READ
      *  @param string $filter SQL filter.
      */
     function read($filter='') {
-        $this->doQuery($filter);
 
         $res  = & $this->result;
         $info = & $this->formParams;
         $definitions = & $this->tableDefinition;
+        $recordsPerPage=$_GET['r'];
+        $pageNumber=$_GET['p'];
+        if ($pageNumber<1) $pageNumber=1;
+        $filter=$_GET['filter'];
+        if ($recordsPerPage<3) $recordsPerPage=100;
+        $url=$_REQUEST[0];
+
+        $filter = $this->write_pagination_links($url, $filter, $recordsPerPage, $pageNumber);
+        $this->doQuery($filter,$recordsPerPage);
         echo '<table summary="read table">';
         echo '<tr>';
 

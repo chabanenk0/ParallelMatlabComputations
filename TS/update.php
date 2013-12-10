@@ -5,14 +5,14 @@ echo "Creating matrix\n";
 $basesdir=getcwd();
 echo "cwd=$basesdir<br>\n";
 if(!mysql_connect(HostName,UserName,Password))
-{ echo "Не могу соединиться с базой".DBName."!<br>";
+{ echo "РќРµ РјРѕРіСѓ СЃРѕРµРґРёРЅРёС‚СЊСЃСЏ СЃ Р±Р°Р·РѕР№".DBName."!<br>";
 echo mysql_error();
 exit;
 }
 mysql_select_db(DBName);
 //mysql_query("USE matrix;");
 set_time_limit(6000); 
-$sgroupid=$_REQUEST['g']; // ид группы рядов, для которых требуется посчитать прогноз.
+$sgroupid=$_REQUEST['g']; // РёРґ РіСЂСѓРїРїС‹ СЂСЏРґРѕРІ, РґР»СЏ РєРѕС‚РѕСЂС‹С… С‚СЂРµР±СѓРµС‚СЃСЏ РїРѕСЃС‡РёС‚Р°С‚СЊ РїСЂРѕРіРЅРѕР·.
 //if (isempty($sgroupid)) 
 //$sgroupid=1;
 echo "sgroupid=$sgroupid<p>\n";
@@ -78,11 +78,11 @@ for($j=0; $j<$num_res; $j++)
  // for finance_yahoo_com
  //$fpath='/home/localhost/www/TS/';
  $fpath=$uploaddirroot.'/../TS';
- $query1="LOAD DATA LOCAL INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  содержит список имен полей в скобках обычным текстом. Для разных источников можно поменять...
+ $query1="LOAD DATA LOCAL INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  СЃРѕРґРµСЂР¶РёС‚ СЃРїРёСЃРѕРє РёРјРµРЅ РїРѕР»РµР№ РІ СЃРєРѕР±РєР°С… РѕР±С‹С‡РЅС‹Рј С‚РµРєСЃС‚РѕРј. Р”Р»СЏ СЂР°Р·РЅС‹С… РёСЃС‚РѕС‡РЅРёРєРѕРІ РјРѕР¶РЅРѕ РїРѕРјРµРЅСЏС‚СЊ...
  echo  $query1."\n";
  $res=mysql_query($query1);
  if (!$res)
- { echo "Ошибка выполнения запроса:";
+ { echo "РћС€РёР±РєР° РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°:";
    echo mysql_error();
    echo "<br>\n";
  }
@@ -134,7 +134,7 @@ for($j=0; $j<$num_res; $j++)
  $query3="UPDATE dataseries set updtime='$maxtime' WHERE id=$curnum;";
  echo  $query3."<p>\n";
  mysql_query($query3);
- // нужно определить макс. дату и сохранить как дату апдейта...
+ // РЅСѓР¶РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ РјР°РєСЃ. РґР°С‚Сѓ Рё СЃРѕС…СЂР°РЅРёС‚СЊ РєР°Рє РґР°С‚Сѓ Р°РїРґРµР№С‚Р°...
  //system("unlink $curname.txt");
 } 
 

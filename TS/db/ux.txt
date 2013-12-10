@@ -1,0 +1,190 @@
+UNAF	846	Укрнафта, ПАТ	Financials	40
+USCB	817	Укрсоцбанк, ПАТ	Energy	10
+ENMZ	817	Єнакієвський металургійний зав	Financials	40
+AZST	817	МК Азовсталь, ПАТ	Health Care	35
+BAVL	816	Райффайзен Банк Аваль, АТ	Financials	40
+CEEN	816	Центренерго, ПАТ	Industrials	20
+ALMK	816	Алчевський металургійний комбі	Consumer Staples	30
+MSICH	812	Мотор Січ, АТ	Industrials	20
+UTLM	795	Укртелеком, ПАТ	Utilities	55
+ZAEN	786	Західенерго, ПАТ	Information Technolo	45
+STIR	767	Концерн Стирол, ПАТ	Financials	40
+AVDK	760	Авдіївський коксохімічний заво	Information Technolo	45
+SVGZ	749	Стахановський вагонобудівний з	Industrials	20
+DOEN	746	Донбасенерго, ПАТ	Consumer Staples	30
+PGOK	731	Полтавський ГЗК, ВАТ	Consumer Staples	30
+KVBZ	728	Крюківський вагонобудівний зав	Consumer Staples	30
+FORM	717	Банк Форум, ПАТ	Consumer Staples	30
+MZVM	696	Маріупольський завод важкого м	Materials	15
+LTPL	677	Луганськтепловоз, ПАТ	Financials	40
+YASK	673	Ясинівський коксохімічний заво	Financials	40
+MMKI	649	Маріупольський металургійний к	Consumer Staples	30
+HRTR	646	Харцизький трубний завод, ПАТ	Utilities	55
+LUAZ	626	АК Богдан Моторс, ПАТ	Materials	15
+SMASH	622	Сумське машинобудівне НВО ім.Ф	Materials	15
+MTBD	592	Мостобуд, ПАТ	Consumer Staples	30
+SHCHZ	584	Шахтоуправління Покровське, ПА	Industrials	20
+DNEN	524	Дніпроенерго, ПАТ	Health Care	35
+ZHEN	519	Житомиробленерго, ПАТ	Financials	40
+NVTR	499	Iнтерпайп Новомосковський труб	Information Technolo	45
+DAKOR	491	Дакор Вест, ПАТ	Consumer Staples	30
+SGOK	657	Північний ГЗК, ПАТ 	Utilities	55
+SHKD	476	ДТЕК Шахта Комсомолець Донбасу	Financials	40
+AVTO	434	Українська автомобільна корпор	Utilities	55
+DMKD	413	Дніпровський металургійний ком	Financials	40
+ALKZ	403	Алчевський коксохімічний завод	Consumer Staples	30
+CGOK	390	ЦГЗК, ПАТ	Financials	40
+GFARM	341	Галичфарм, АТВТ	Consumer Staples	30
+KRAZ	337	ХК АвтоКрАЗ, ПАТ	Consumer Staples	30
+NITR	315	ІНТЕРПАЙП Нижньодніпровський т	Financials	40
+KREN	246	Крименерго, ПАТ	Utilities	55
+GLNG	243	Концерн Галнафтогаз, ПАТ	Industrials	20
+KRHLB	235	Кримхліб, ПАТ	Consumer Staples	30
+DNSS	195	Дніпроспецсталь, ПАТ	Consumer Staples	30
+KIEN	180	Київенерго, ПАТ	Energy	10
+ZPST	180	Запоріжсталь, ВАТ	Health Care	35
+DNON	176	Дніпрообленерго, ПАТ	Health Care	35
+ENMA	167	Енергомашспецсталь, ВАТ	Industrials	20
+ZACO	154	Запорожкокс, ВАТ	Materials	15
+SLAV	154	ПБК Славутич, ПАТ	Financials	40
+KSOD	151	Кримський содовий завод, ПАТ	Materials	15
+DOMZ	135	Донецький металургiйний завод,	Utilities	55
+TATM	134	Турбоатом, ВАТ	Information Technolo	45
+KSTL	134	АрселорМіттал Кривий Ріг, ПАТ	Health Care	35
+KRDB	132	Кредобанк, ПАТ	Financials	40
+HMBZ	130	Харківський машинобудівний зав	Health Care	35
+DTRZ	129	Дніпропетровський трубний заво	Financials	40
+NDGD	128	Надія, СМАТ	Consumer Staples	30
+HAON	114	Харківобленерго, АК	Financials	40
+SUNI	112	САН ІнБев Україна, ПАТ	Industrials	20
+SNEM	99	Насосенергомаш, ВАТ	Materials	15
+KFTP	93	Слов'янські шпалери КФТП, ПАТ	Health Care	35
+AZGM	91	Азовзагальмаш, ВАТ	Utilities	55
+DMZP	85	Євраз - Дніпропетровський мета	Consumer Staples	30
+MZKK	84	Миронівський завод по виготовл	Financials	40
+DNSH	82	Дніпрошина, ВАТ	Consumer Staples	30
+KION	81	Кіровоградобленерго, ПАТ	Utilities	55
+DRMZ	80	Дружківський машинобудівний за	Utilities	55
+UROS	78	"Цукровий союз \Укррос\"", ВАТ"""	Financials	40
+ROSA	75	Росава, ВАТ	Financials	40
+NKRED	72	Банк Національний кредит, ПАТ	Financials	40
+NFER	71	Нікопольський завод феросплаві	Industrials	20
+ZATR	71	Запоріжтрасформатор, ПАТ	Financials	40
+SZLV	71	"Суднобудівний завод \Залів\"", В"""	Financials	40
+LVON	69	Львівобленерго, ВАТ	Energy	10
+ZHMZ	66	Житомирський маслозавод, ПАТ	Information Technolo	45
+HMON	65	Хмельницькобленерго, ВАТ	Consumer Staples	30
+DGRM	64	Донецькгірмаш, ПАТ	Industrials	20
+HGAZ	63	Хмельницькгаз,ПАТ	Consumer Staples	30
+HOEN	58	Херсонобленерго, ПАТ	Consumer Staples	30
+LSHP	56	Трест Луганськшахтопроходка, П	Health Care	35
+ZHGZ	52	Житомиргаз, ПАТ	Utilities	55
+POON	51	Полтаваобленерго, ПАТ	Utilities	55
+KIGA	51	Київоблгаз, ПАТ	Information Technolo	45
+DMPZ	50	Донецький металопрокатний заво	Utilities	55
+MEGA	49	Мегабанк, ПАТ	Information Technolo	45
+ZFER	44	Запорізький завод феросплавів,	Industrials	20
+NADR	43	КБ Надра, ПАТ	Materials	15
+HANZ	40	НПК-Галичина, ВАТ	Industrials	20
+ODEN	40	Одесаобленерго, ВАТ	Consumer Staples	30
+VIEN	39	Вінницяобленерго, ПАТ	Utilities	55
+ZZMK	39	Запорізький завод металевих ко	Information Technolo	45
+NKMZ	38	Новокраматорський машинобудівн	Industrials	20
+CRGR	37	Креатив Груп, ПАТ	Materials	15
+DKOK	37	Донецьккокс, ПАТ	Financials	40
+RAZT	35	Рівнеазот, ПАТ	Health Care	35
+CHEON	34	Чернігівобленерго, ПАТ	Consumer Staples	30
+SFER	34	Стахановський завод феросплаві	Utilities	55
+ZALK	34	Запорізький виробничий алюміні	Consumer Staples	30
+UGZB	33	АК Укргазбанк, ПАТ	Utilities	55
+KNST	32	Криворізький турбінний завод К	Materials	15
+AZOT	32	Азот, ВАТ	Consumer Discretiona	25
+TRGT	31	Трест-Житлобуд-1, BAT	Consumer Staples	30
+ZPVT	29	Запоріжвогнетрив, ВАТ	Consumer Staples	30
+TOEN	29	Тернопільобленерго, ВАТ	Health Care	35
+SORN	29	"НАСК \Оранта\"", ВАТ"""	Consumer Staples	30
+ZOEN	28	Закарпаттяобленерго, ПАТ	Consumer Staples	30
+SKUN	27	СК Універсальна, ПАТ	Consumer Staples	30
+HRGZ	27	Херсонгаз, ПАТ	Information Technolo	45
+DVRB	27	Дніпропетровський завод з ремо	Information Technolo	45
+GDGZ	27	Гадячгаз, ПАТ	Materials	15
+KVPR	26	ПBП Кривбасвибухпром, ПАТ	Information Technolo	45
+RTGR	26	РІТЕЙЛ ГРУП, ПАТ	Energy	10
+HARP	26	Харківський підшипниковий заво	Utilities	55
+UGRA	25	Український графіт, ПАТ	Information Technolo	45
+CHON	25	Черкасиобленерго, ВАТ	Materials	15
+ZAON	25	Запоріжжяобленерго, ВАТ	Industrials	20
+SSOL	25	Славутський солодовий завод, П	Industrials	20
+GALTN	25	Галактон, ПАТ	Materials	15
+UXUA	25	Українська біржа, ПАТ	Information Technolo	45
+KIUZ	25	Київський ювелірний завод, ВАТ	Utilities	55
+DOGZ	24	Донецькоблгаз, ПAT	Information Technolo	45
+KRGZ	24	Кременчукгаз, ПАТ	Information Technolo	45
+PREN	23	Прикарпаттяобленерго, ПАТ	Consumer Discretiona	25
+KVZR	22	Квазар, ПАТ	Energy	10
+KRCS	22	Краматорський цементний завод 	Financials	40
+KORV	21	Коровай, ПАТ	Materials	15
+RVZP	21	Рівневетзоопромпостач, ВАТ	Information Technolo	45
+KMED	21	Київмедпрепарат, ВАТ	Financials	40
+NORD	21	НОРД, ПАТ	Utilities	55
+IIBK	20	Міжнародний Інвестиційний Банк	Energy	10
+EGZB	20	Європейський газовий банк, ПАТ	Utilities	55
+BKOK	20	Євраз Баглійкокс, ПАТ	Utilities	55
+FARM	19	Фармак,ВАТ	Financials	40
+MGZC	19	Марганецький ГЗК, ПАТ	Utilities	55
+KKOL	19	Кременчуцький колісний завод, 	Industrials	20
+ENUG	19	Пiдприємство електричних мереж	Consumer Staples	30
+DMZK	18	Дніпропетровський металургійни	Information Technolo	45
+KGGZ	18	Кіровоградгаз, ВАТ	Financials	40
+SELM	17	НВП Смілянський електромеханіч	Consumer Staples	30
+DOON	17	Донецькобленерго, ВАТ	Energy	10
+BASIS	16	Базис, ПАТ	Financials	40
+MGRA	15	Маркограф, ВАТ	Consumer Staples	30
+HLPR	14	Концерн Хлібпром, ПАТ	Health Care	35
+PANK	13	Пантек, ПАТ	Health Care	35
+TRIBO	13	Трібо, ПАТ	Consumer Staples	30
+THPR	13	Завод Технопривод, ПАТ	Consumer Staples	30
+VELS	12	Банк Велес, АТ	Consumer Staples	30
+ONPZ	12	Лукойл-Одеський НПЗ, ПАТ	Health Care	35
+MOEN	12	Миколаївобленерго, ВАТ EK	Industrials	20
+KRDM	12	Кременчуцький завод дорожніх м	Industrials	20
+INVBA	11	КБ Інвестбанк, ПАТ	Consumer Discretiona	25
+DRRZ	11	Донецький рудоремонтний завод,	Consumer Discretiona	25
+UNGG	11	Інститут Южніігіпрогаз, ВАТ	Utilities	55
+DVNT	9	Давенто-Україна, ПАТ	Energy	10
+DKRO	9	Дніпровський крохмалепатоковий	Industrials	20
+ZVCA	9	ДЕЗ №20 ЦА, ПАТ	Consumer Staples	30
+GARL	9	УСК Гарант-Лайф, ПАТ	Health Care	35
+SZVI	8	Слов'янський завод високовольт	Utilities	55
+GPOD	7	Готель Поділля, ПАТ	Financials	40
+ZPRK	6	Запорізький рибокомбінат, ПАТ	Health Care	35
+PHMSH	6	Полтавхіммаш, ВАТ	Information Technolo	45
+TODK	5	Тодак, ПАТ	Health Care	35
+HEMO	5	Гемопласт, ВАТ	Information Technolo	45
+DZMK	5	Дніпропетровський завод метало	Utilities	55
+YAGT	4	Яготинське, ПАТ	Consumer Staples	30
+KMOL	4	Ковельмолоко, ПАТ	Financials	40
+AGDM	3	Аграрний дім, ПАТ	Health Care	35
+KIOL	3	Кіровоградолія, ПАТ	Consumer Staples	30
+KMGP	3	Київміськголовпостач, ПАТ	Consumer Staples	30
+MLIB	3	Млибор, ПАТ	Utilities	55
+YATS	3	Яготинський райагротехсервіс, 	Materials	15
+PLKZ	2	Полтавський комбікормовий заво	Utilities	55
+VORN	2	ШФ Воронін, ПАТ	Industrials	20
+UOPB	2	Укроптбакалія, ПАТ	Health Care	35
+KRKF	2	Кременчуцька кондитерська фабр	Health Care	35
+INEKO	2	IK Інеко, ПАТ	Utilities	55
+MRKF	2	Маріупольська кондитерська фаб	Financials	40
+KVKF	2	Київська кондитерська фабрика 	Consumer Staples	30
+CHER	2	Черкаський, ПАТ	Financials	40
+BEML	2	Бершадьмолоко, ПАТ	Information Technolo	45
+SUBA	2	Євраз Суха Балка, ПАТ	Financials	40
+LGTB	2	Львівгуртбакалія, ПАТ	Consumer Discretiona	25
+VKND	2	Вінницька кондитерська фабрика	Utilities	55
+PFTS	2	Фондова біржа ПФТС, ПАТ	Consumer Staples	30
+BZBK	1	Білоцерківський завод залізобе	Utilities	55
+DSTR	1	Дніпропетровський стрілочний з	Health Care	35
+BERZ	1	Берегівський радіозавод, ПАТ	Consumer Staples	30
+LAKMA	1	Лакма, ПАТ	Utilities	55
+KVTZ	1	Кіндратівський вогнетривкий за	Utilities	55
+VRHP	1	Вирівське хлібоприймальне підп	Financials	40
