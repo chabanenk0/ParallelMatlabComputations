@@ -33,7 +33,6 @@ mysql_query("insert into seriesgroups(name , description) values( 'UX_H','UX hou
 mysql_query("insert into seriesgroups(name , description) values( 'UX_M','UX Minutes for forecasting')");
 
 
-mysql_query("create table seriesgroupsconn(id int not null auto_increment primary key, seriesid int, seriesgroupid int)");
 mysql_query("insert into seriesgroupsconn(seriesid, seriesgroupid ) values( 1,1)");
 mysql_query("insert into seriesgroupsconn(seriesid, seriesgroupid ) values( 2,1)");
 mysql_query("insert into seriesgroupsconn(seriesid, seriesgroupid ) values( 3,2)");

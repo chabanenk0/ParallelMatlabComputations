@@ -1,4 +1,4 @@
-<?
+<?php
 $basesdir=getcwd();
 include "settings.php";
 //define("DBName","matrix");

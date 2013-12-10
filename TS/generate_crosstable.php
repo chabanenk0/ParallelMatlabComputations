@@ -1,4 +1,4 @@
-<?
+<?php
 $basesdir=getcwd();
 include "settings.php";
 //define("DBName","matrix");
@@ -13,12 +13,12 @@ exit;
 
 //mysql_query("USE matrix;");
 mysql_select_db(DBName);
-$sgid=5;
+$sgid=$_GET['sgid'];
 //$r=mysql_query("select * from allnames");
 
 // !!!добавить в создание матрици!!!!
 // mysql_query("DROP TABLE IF EXISTS matrixseries;");
-// mysql_query("CREATE TABLE matrixseries(matrixnum int, seriesnum int, position int,c int, firstdate DATE, firsttime TIME, lastdate DATE, lasttime TIME)");
+//mysql_query("CREATE TABLE matrixseries(matrixnum int, seriesnum int, position int,c int, firstdate DATE, firsttime TIME, lastdate DATE, lasttime TIME)");
 
 
 //$r=mysql_query("select dataseries.name as ticker, count(allrecords.tickernum) as c, seriesgroupsconn.seriesid as seriesid from dataseries,seriesgroupsconn,allrecords where ((seriesgroupsconn.seriesgroupid=$sgid) and (dataseries.id=allrecords.tickernum) and (allrecords.tickernum=seriesgroupsconn.seriesid)) group by ticker,seriesid order by c desc;");
@@ -71,8 +71,8 @@ for($i=1; $i<=$num_res; $i++)
 } 
 
 //То же можно перенести в создание
-//mysql_query("drop table if exists matrixqueries;");
-//mysql_query("create table matrixqueries(id int not null auto_increment primary key, querytext varchar(2000), querystate char(10));");
+mysql_query("drop table if exists matrixqueries;");
+mysql_query("create table matrixqueries(id int not null auto_increment primary key, querytext varchar(2000), querystate char(10));");
 
 //$namearray=array("A","AA","AAPL","BAC","C");
 //$num_res=40;
@@ -100,6 +100,10 @@ $query=$query." t_".$namearray[1].".tickernum='".$idarray[1]."' ;";
 echo $query;
 $query2=rawurlencode($query);
 mysql_query("insert into matrixqueries(querytext , querystate) values ('$query2','wait');");
+$query="create index dateindex on tmp (date)";
+$query2=rawurlencode($query);
+mysql_query("insert into matrixqueries(querytext , querystate) values ('$query2','wait');");
+
 //$r=mysql_query($query);
 
 for($i=2; $i<$num_res; $i++)
@@ -108,6 +112,9 @@ for($i=2; $i<$num_res; $i++)
   $query=$query."FROM tmp left join allrecords as t_".$namearray[$i]." on tmp.date=t_".$namearray[$i].".date\n";
   $query=$query."WHERE  t_".$namearray[$i].".tickernum='".$idarray[$i]."' ;";
   echo "\n$query \n";
+  $query2=rawurlencode($query);
+  mysql_query("insert into matrixqueries(querytext , querystate) values ('$query2','wait');");
+  $query="create index dateindex on tmp1 (date)";
   $query2=rawurlencode($query);
   mysql_query("insert into matrixqueries(querytext , querystate) values ('$query2','wait');");
 

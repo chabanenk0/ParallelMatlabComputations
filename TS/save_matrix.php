@@ -1,4 +1,4 @@
-<?
+<?php
 $basesdir=getcwd();
 include "settings.php";
 //define("DBName","matrix");
@@ -13,18 +13,18 @@ exit;
 set_time_limit(6000); 
 //mysql_query("USE matrix;");
 mysql_select_db(DBName);
-$mnum=16;
+$mnum=$_GET['mnum'];//16; Matrix number (from matrixseries table)
 
 // формирование массива имен заголовков...
 $r=mysql_query("select * from matrixdata where id=$mnum;");
 $f=mysql_fetch_array($r);
 $matrixname=$f['name'];
 $mtablename=$f['temptablename'];
-$mtablename='tmp74';
+$mtablename='tmp27'; //!!! to be corrected!!!
 $r=mysql_query("SELECT matrixseries.matrixnum as matrixnum, matrixseries.seriesnum as seriesnum, matrixseries.position as position, dataseries.name as name, dataseries.sector as sector, dataseries.color as color FROM matrixseries,dataseries WHERE matrixseries.matrixnum=$mnum and dataseries.id=matrixseries.seriesnum order by position");
 $num_series=mysql_num_rows($r);
 
-$basefilename='sp_073';
+$basefilename='sp_073';// !!!  to be corrected!!!
 $nmfilename=$basefilename.'.nm';
 $dtfilename=$basefilename.'.dt';
 $txtfilename=$basefilename.'.txt';
@@ -56,6 +56,7 @@ for ($i=0;$i<$num_series;$i++)
 fclose($fp);
 
 // сохранение тхт и дт-файла
+echo "SELECT * from $mtablename ORDER BY date ASC;";
 $r=mysql_query("SELECT * from $mtablename ORDER BY date ASC;");
 $n=mysql_num_rows($r);
 echo "\nn=$n<br>\n";
@@ -90,7 +91,9 @@ $sname=str_replace(".","_",$sname);
 $sname=str_replace("-","_",$sname);
  
 echo "sname=$sname<br>\n";
+echo "SELECT  date, $sname from $mtablename ORDER BY date ASC;";
 $r2=mysql_query("SELECT  date, $sname from $mtablename ORDER BY date ASC;");
+
 $n2=mysql_num_rows($r2);
 if ($flag_first)
    {fprintf($fp,"%d %d\n",$num_series,$n2);

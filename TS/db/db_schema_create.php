@@ -68,6 +68,10 @@ mysql_query("create table datasources(id int not null auto_increment primary key
 
 mysql_query("create table dataseries(id int not null auto_increment primary key, name char(20), number int, groupnum int, source int, upddate date , updtime time, type int, discretization int, seriesname char(30), sector char(20), color int)");
 
+
+mysql_query("create table seriesgroupsconn(id int not null auto_increment primary key, seriesid int, seriesgroupid int)");
+mysql_query("create index seriesindex on seriesgroupsconn (seriesid)");
+mysql_query("create index seriesgroupindex on seriesgroupsconn (seriesgroupid)");
 // èç ñòàðûõ ïðèìåðîâ:
 //CREATE TABLE allnames(name VARCHAR(10), nrec DOUBLE, sname VARCHAR(10),lname VARCHAR(30),sector VARCHAR(20),color varchar(5));
 
@@ -82,8 +86,11 @@ mysql_query("create table dataseries(id int not null auto_increment primary key,
 // - îáúåì
 // - àäæ êëîóç
 
-mysql_query("CREATE TABLE allrecords(id int not null auto_increment primary key,tickernum int,name char(20), discr char (20),date DATE,time TIME, open DOUBLE,low DOUBLE,high DOUBLE,close DOUBLE, volume DOUBLE, adjclose DOUBLE, dumbfield1 char(10),dumbfield2 char(10), dumbfield3 char(10))");
-
+mysql_query("CREATE TABLE allrecords(id int not null auto_increment primary key,tickernum int,name char(20), discr char (20),date DATE,time TIME, open DOUBLE,low DOUBLE,high DOUBLE,close DOUBLE, volume DOUBLE, adjclose DOUBLE, dumbfield1 char(10),dumbfield2 char(10), dumbfield3 char(10)) engine='myisam'");
+mysql_query("create index dateindex on allrecords (date,time)");
+// mysql_query("create fulltext index nameindex on allrecords (name)");
+mysql_query("create index tickernumindex on allrecords (tickernum)");
+echo mysql_error();
 // 3) Äàííûå (òèê)
 // - íîìåð ðÿäà (ññûëêà íà èñòî÷íèêè)
 // - äàòà
@@ -93,6 +100,7 @@ mysql_query("CREATE TABLE allrecords(id int not null auto_increment primary key,
 // - íàïðàâëåíèå (áàé/ñåëë) àãðåññèâíîå
 
 mysql_query("CREATE TABLE allrecords_tick(tickernum int,date DATE, time TIME, datetimeminutes long, price DOUBLE, number DOUBLE, direction char (1))");
+mysql_query("create index dateindex on allrecords_tick (date,time)");
 
 // òàáëèöà ãðóïï ðÿäîâ (÷òîáû çàäàâàòü çàäàíèå ïðîãíîçèðîâàòü äëÿ âñåé ãðóïïû.
 mysql_query("create table seriesgroups(id int not null auto_increment primary key, name char(20), description varchar(200))");
@@ -135,6 +143,8 @@ mysql_query("CREATE TABLE matrixdata(id int not null auto_increment primary key,
 // - íîìåð ðÿäà â ìàòðèöå (öåëîå ÷èñëî)
 mysql_query("CREATE TABLE matrixseries(matrixnum int, seriesnum int, position int,c int, firstdate DATE, firsttime TIME, lastdate DATE, lasttime TIME)");
 
+mysql_query("create table matrixqueries(id int not null auto_increment primary key, querytext varchar(2000), querystate char(10));");
+
 // 6) è äðóãèå - âðåìåííûå òàáëèöû
 // - äàòà
 // - ðÿä1 (êëîóç èç ðÿäà1)
@@ -145,4 +155,5 @@ mysql_query("CREATE TABLE resultseries(id int not null auto_increment primary ke
 
 mysql_query("CREATE TABLE resultseriesdata(id int not null auto_increment primary key,resultid int, position int, c1 double,c2 double,c3 double)");
 
-?>                                                               
+
+?>

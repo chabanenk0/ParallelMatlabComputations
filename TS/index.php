@@ -1,4 +1,4 @@
-<p><a href=clear.php> очистка БД </a></p>
+<p><a href=db/db_recreate_all.php> очистка БД </a></p>
 <p><a href=update.php?g=2> Обновление БД </a></p>
 <p><a href=generate.php?gmid=1> Генерация архива файлов с ценами закрытия </a></p>
 <?php
@@ -17,3 +17,6 @@ include "indexupdgen.php";
 <p><a href=allrecords_tick.php>CRUD for allrecords_tick</a></p>
 <p><a href=resultseries.php>CRUD for resultseries</a></p>
 <p><a href=resultseriesdata.php>CRUD for resultseriesdata</a></p>
+<?php
+include "index_matrix_prepare.php";
+?>
