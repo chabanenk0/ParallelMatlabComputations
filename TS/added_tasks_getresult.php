@@ -1,5 +1,5 @@
 <?php
-include "settings.php";
+include "../ParalelMatlabServer2/settings.php";
 //define("DBName","matlab2");
 //define("HostName","localhost");
 //define("UserName","root");
@@ -10,7 +10,7 @@ echo mysql_error();
 exit;
 }
 $id = $_REQUEST['id'];
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 $r=mysql_query("select * from added_tasks where id=$id");
 
 //echo "Deleting database. Result=";
@@ -27,7 +27,7 @@ $taskresid=$f['taskresid'];
 //echo "trid=$taskresid";
 if ($taskresid>0)
  $taskid=$taskresid;
-mysql_select_db(DBName2);
+mysql_select_db(DBName);
 //echo "taskid=$taskid";
 $r=mysql_query("select done,taskgroupid  from tasks where id=$taskid");
 if ($r) 

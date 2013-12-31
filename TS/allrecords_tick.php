@@ -28,6 +28,8 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
+require_once "head_all.php"; 
+require_once "header.php"; 
  
 
 $info = array(
@@ -67,7 +69,7 @@ $info = array(
     EDIT_LINK => "?action=update&id=%id",
     DELETE_LINK => "?action=delete&id=%id"
 );
-$crud = new crud("mysql://root@localhost/TS","allrecords_tick",$info);
+$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"allrecords_tick",$info);
 ?>
 <h1>CRUD for allrecords_tick table</h1>
 <h2><a href='?action=new'>Add a new record </a> | <a href='?'>View</a></h2>
@@ -91,4 +93,5 @@ switch ( $_GET['action'] ) {
         $crud->read();
         break;
 }
+require_once "footer.php"; 
 ?>

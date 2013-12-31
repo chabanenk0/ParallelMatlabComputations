@@ -28,7 +28,8 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
- 
+require_once "head_all.php"; 
+require_once "header.php"; 
 
 $info = array(
     /**
@@ -68,7 +69,7 @@ $info = array(
     EDIT_LINK => "?action=update&id=%id",
     DELETE_LINK => "?action=delete&id=%id"
 );
-$crud = new crud("mysql://root@localhost/TS","matrixdata",$info);
+$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"matrixdata",$info);
 ?>
 <h1>CRUD for MatrixData table</h1>
 <h2><a href='?action=new'>Add a new matrix </a> | <a href='?'>View</a></h2>
@@ -92,4 +93,5 @@ switch ( $_GET['action'] ) {
         $crud->read();
         break;
 }
+require_once "footer.php"; 
 ?>

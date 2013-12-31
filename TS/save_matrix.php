@@ -1,6 +1,6 @@
 <?php
 $basesdir=getcwd();
-include "settings.php";
+include "../ParalelMatlabServer2/settings.php";
 //define("DBName","matrix");
 //define("HostName","localhost");
 //define("UserName","root");
@@ -12,7 +12,7 @@ exit;
 }
 set_time_limit(6000); 
 //mysql_query("USE matrix;");
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 $mnum=$_GET['mnum'];//16; Matrix number (from matrixseries table)
 
 // формирование массива имен заголовков...

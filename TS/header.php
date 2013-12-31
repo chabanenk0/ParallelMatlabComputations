@@ -1,6 +1,6 @@
 <?php
-include "settings.php";
-include "bcrypt.php";
+include "../ParalelMatlabServer2/settings.php";
+include "../ParalelMatlabServer2/bcrypt.php";
 if(!mysql_connect(HostName,UserName,Password))
 { echo "Не могу соединиться с базой".DBName."!<br>";
 echo mysql_error();
@@ -45,13 +45,11 @@ if (strcmp($uname,"")==0)$uname=$f['login'];
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-		<li><a href="userlist.php">Пользователи</a></li>
-		<li><a href="processlist.php">Рабочие станции</a></li>
-		<li><a href="methodslist.php">Методы прогнозирования</a></li>
-		<li><a href="datalist.php">Данные</a></li>
-		<li><a href="tasklist2.php">Задания</a></li>
-		<li><a href="datareslist.php">Результаты</a></li>
-		<li><a href="../TS/">Подсистема TimeSeries</a></li>
+		<li><a href="index-series.php">Временные ряды</a></li>
+		<li><a href="index-data.php">Данные рядов</a></li>
+		<li><a href="index-matrix.php">Матричные БД</a></li>
+		<li><a href="index-result.php">Результаты</a></li>
+		<li><a href="../ParalelMatlabServer2/">Подсистема ParallelCalc</a></li>
 		<?php
 		if ($auth==1)
 			echo "<li>Hello, $uname!!!<a href=logout.php>Logout</a></li>\n";

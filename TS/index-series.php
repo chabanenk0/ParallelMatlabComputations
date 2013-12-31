@@ -21,15 +21,6 @@ include "indexupdgen.php";
 <p><a href=seriesgroups.php>CRUD for seriesgroups</a></p>
 <p><a href=seriesgroupsconn.php>CRUD for seriesgroupsconn</a></p>
 <p><a href=groupsmethods.php>CRUD for groupsmethods connection table</a></p>
-<p><a href=matrixdata.php>CRUD for matrixdata</a></p>
-<p><a href=matrixseries.php>CRUD for matrixseries</a></p>
-<p><a href=allrecords.php>CRUD for allrecords</a></p>
-<p><a href=allrecords_tick.php>CRUD for allrecords_tick</a></p>
-<p><a href=resultseries.php>CRUD for resultseries</a></p>
-<p><a href=resultseriesdata.php>CRUD for resultseriesdata</a></p>
-<?php
-include "index_matrix_prepare.php";
-?>
 
 <?php
 include "footer.php";

@@ -1,15 +1,17 @@
 <?
 $basesdir=getcwd();
-define("DBName","matrix");
-define("HostName","localhost");
-define("UserName","root");
-define("Password","");
+include "../ParalelMatlabServer2/settings.php";
+//define("DBName","matrix");
+//define("HostName","localhost");
+//define("UserName","root");
+//define("Password","");
 if(!mysql_connect(HostName,UserName,Password))
 { echo "Не могу соединиться с базой".DBName."!<br>";
 echo mysql_error();
 exit;
 }
-mysql_query("USE matrix;");
+//mysql_query("USE matrix;");
+mysql_select_db(DBName2);
 $r=mysql_query("select * from allnames");
 //$basesdir="F:\!diskd\work_matlab\Matrix_get\"
 $num_res=mysql_num_rows($r);

@@ -1,6 +1,6 @@
 <html>
 <?php
-//include "head_all.php";
+include "head_all.php";
 ?>
 <title>Работа с пакетами данных </title>
 </head>
@@ -10,7 +10,7 @@
 include "header.php";
 ?>
 <?php
-include "settings.php";
+//include "settings.php";
 //define("DBName","matlab2");
 //define("HostName","localhost");
 //define("UserName","root");
@@ -22,7 +22,7 @@ echo mysql_error();
 exit;
 }
 
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 $r=mysql_query("select * from added_tasks;");
 $num_res=mysql_num_rows($r);
 echo '<table 
@@ -36,6 +36,6 @@ href=added_tasks_getresult.php?id=$f[id]>$f[id]</a></td></tr> \n";
 
 }
 echo '</table>';
-
+include "footer.php";
 
 ?>

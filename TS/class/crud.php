@@ -37,6 +37,7 @@ define("INSERT_SQL","insert into %s(%s) values(%s)");
 define("REQUIRE_DBA","This class require <a href='http://cesars.users.phpclasses.org/dba'>DBA</a> class. Please download it and copy the folder 'dbal' in ${pwd}");
 define("REQUIRE_FORMS","This class require <a href='http://cesars.users.phpclasses.org/formsgeneration'>Forms Generation Class</a> class. Please download it and copy the file 'forms.php' in ${pwd}");
 define("CAPTION","caption");
+define("ENCODE","encode");
 define("TABLE", "table" );
 define("ID","id");
 define("TEXT", "text");
@@ -176,16 +177,21 @@ class crud {
         $form->ACTION="";
         $form->ResubmitConfirmMessage="Are you sure you want to submit this form again?";
         $form->OptionsSeparator="<br />\n";
-
+		
         foreach($this->formParams as $k => $input)   {
             if ( is_array($default) && count($default) > 0) {
                 $input["VALUE"] = $default[$k];
+				if (isset($this->tableDefinition[$k][ENCODE])){
+				    $encodeOptions=$this->tableDefinition[$k][ENCODE];
+				    if ($encodeOptions==true) {
+					    $input["VALUE"]=rawurldecode($input["VALUE"]);
+					}
+				}
             }
-			echo "input=";print_r($input);echo "<br>\n";
             echo $form->AddInput( $input );
         }
 
-         $form->LoadInputValues($form->WasSubmitted(INPUT_DOIT));
+        $form->LoadInputValues($form->WasSubmitted(INPUT_DOIT));
 
 
         $verify=array();
@@ -208,6 +214,10 @@ class crud {
             foreach($this->formParams as $k=>$v) {
                 if ( $k == ROW_ID || $k == INPUT_DOIT || $k == INPUT_SUBMIT) continue;
                 $columns[] = $k;
+				if (isset($v[ENCODE])&&($v[ENCODE])) {
+				    $_POST[$k]=rawurlencode($_POST[$k]);
+					echo "encoded:".$_POST[$k]."<br>";
+				}
             }
             if ( $update ) {
                 $updatx  = array();
@@ -221,6 +231,11 @@ class crud {
             }
 
             $dba->compile($sql);
+			foreach ($this->tableDefinition as $key1=>$value1) {
+				if (is_array($value1)&&(isset($value1[ENCODE]))&&($value1[ENCODE]==true)) {
+					$_POST[$key1] = rawurlencode($_POST[$key1]);
+				}
+			}
 
             $f = $dba->execute($_POST);
             if ( $f ) 
@@ -456,6 +471,8 @@ class crud {
                 foreach($definitions as $k => $v) {
                     if ( ! isset($v[SHOWCOLUMN]) || !$v[SHOWCOLUMN]) continue;
                     $text = isset($info[$k]["OPTIONS"][$r[$k]]) ? $info[$k]["OPTIONS"][$r[$k]] : $r[$k];
+					if (isset($v[ENCODE])&&($v[ENCODE]))
+					    $text = rawurldecode($text);
                     echo '<td>'.$text.'</td>';
                 }
                 $edit_url = $definitions[EDIT_LINK];
@@ -489,7 +506,7 @@ class crud {
         echo '</table>';
     }
     /**
-     *  READ
+     *  READ_CSV
      *  @param string $filter SQL filter.
      */
     function read_csv($filter='',$fieldonly='') {
@@ -663,7 +680,6 @@ class crud {
         /*special field, for helps to know if the form were submited or not */
         $formParams[INPUT_DOIT]   = array("TYPE"=>"hidden","NAME"=>INPUT_DOIT,"VALUE"=>1);
         $formParams[INPUT_SUBMIT] = array("TYPE"=>"submit","LABEL"=>"Submit this form using","VALUE"=>"this button","ID"=>INPUT_SUBMIT ,"NAME"=>INPUT_SUBMIT);
-
     }
     
     /**

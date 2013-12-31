@@ -1,5 +1,5 @@
 <?php
-include "settings.php";
+//include "settings.php";
 //define("DBName","matlab2");
 //define("HostName","localhost");
 //define("UserName","root");
@@ -10,7 +10,7 @@ if(!mysql_connect(HostName,UserName,Password))
 echo mysql_error();
 exit;
 }
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 $r=mysql_query("select * from seriesgroups;");
 $num_res=mysql_num_rows($r);
 echo "<p>Обновление данных:</p>\n<ul>\n";

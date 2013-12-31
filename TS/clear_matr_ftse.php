@@ -1,5 +1,5 @@
 <?php
-include "settings.php";
+include "../ParalelMatlabServer2/settings.php";
 //define("DBName","matlab2");
 //define("HostName","localhost");
 //define("UserName","root");
@@ -10,7 +10,7 @@ echo mysql_error();
 exit;
 }
 
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 echo "Updating tables for FTSE matrix\n";
 
 mysql_query("drop table if exists tmp_dataseries;");

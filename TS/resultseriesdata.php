@@ -30,6 +30,8 @@ error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
 require("pChart/pChart/pData.class");
 require("pChart/pChart/pChart.class");
+require_once "head_all.php"; 
+require_once "header.php"; 
 
 $info = array(
     /**
@@ -67,7 +69,7 @@ $info = array(
     EDIT_LINK => "?action=update&id=%id",
     DELETE_LINK => "?action=delete&id=%id"
 );
-$crud = new crud("mysql://root@localhost/TS","resultseriesdata",$info);
+$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"resultseriesdata",$info);
 if (($_GET['action']=='new')&&(array_key_exists('c1',$_POST)))
             {
 $new_id=($crud->create());
@@ -142,4 +144,5 @@ switch ( $_GET['action'] ) {
         $crud->read($_GET['filter']);
         break;
 }
+require_once "footer.php"; 
 ?>

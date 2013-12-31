@@ -28,7 +28,8 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
- 
+require_once "head_all.php"; 
+require_once "header.php"; 
 
 $info = array(
     /**
@@ -43,7 +44,7 @@ $info = array(
     'groupid' => array(CAPTION => 'groupid', TABLE => "seriesgroups", ID => "id", TEXT => "name", SHOWCOLUMN=>true),
     'methodid' => array(CAPTION => 'methodid', TABLE => "methods", ID => "id", TEXT => "name", SHOWCOLUMN=>true, DATABASE => "matlab2"),
     'type_precommand' => array(CAPTION => 'type_precommand', SHOWCOLUMN=>true ), 
-    'precommands' => array(CAPTION => 'precommands', SHOWCOLUMN=>true ),
+    'precommands' => array(CAPTION => 'precommands', SHOWCOLUMN=>true, ENCODE=>true ),
     /*
      *
      *
@@ -65,7 +66,7 @@ $info = array(
     EDIT_LINK => "?action=update&id=%id",
     DELETE_LINK => "?action=delete&id=%id"
 );
-$crud = new crud("mysql://root@localhost/TS","groupsmethods",$info);
+$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"groupsmethods",$info);
 ?>
 <h1>CRUD for GroupsMethods table</h1>
 <h2><a href='?action=new'>Add a new GroupMethods connection record</a> | <a href='?'>View</a></h2>
@@ -89,4 +90,5 @@ switch ( $_GET['action'] ) {
         $crud->read();
         break;
 }
+require_once "footer.php"; 
 ?>

@@ -1,5 +1,5 @@
 <?php
-include "settings.php";
+include "../ParalelMatlabServer2/settings.php";
 //define("DBName","matlab2");
 //define("HostName","localhost");
 //define("UserName","root");
@@ -11,7 +11,7 @@ exit;
 }
 $taskid=$_REQUEST['taskid'];
 $taskresid=$_REQUEST['taskresid'];
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 $r=mysql_query("update added_tasks set taskresid=$taskresid where taskid=$taskid");
 echo "update added_tasks set taskresid=$taskresid where taskid=$taskid";
 //echo "Deleting database. Result=";

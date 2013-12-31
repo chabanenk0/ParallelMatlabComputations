@@ -5,14 +5,14 @@
 // ++exec_queries.php
 // --generate_export_query.php // old version. Prints sql queries to the output
 // save_matrix.php
-include "settings.php";
+//include "settings.php";
 
 if(!mysql_connect(HostName,UserName,Password))
 { echo "Unable to connect to the database ".DBName."!<br>";
 echo mysql_error();
 exit;
 }
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 $r=mysql_query("select * from seriesgroups;");
 $num_res=mysql_num_rows($r);
 echo "<p>Choose the group to create a matrix (generating queries):</p>\n<ul>\n";

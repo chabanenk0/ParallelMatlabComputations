@@ -1,6 +1,6 @@
 <?
 
-include "settings.php";
+include "../ParalelMatlabServer2/settings.php";
 echo "Creating matrix\n";
 $basesdir=getcwd();
 if(!mysql_connect(HostName,UserName,Password))
@@ -8,7 +8,7 @@ if(!mysql_connect(HostName,UserName,Password))
 echo mysql_error();
 exit;
 }
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 $userar=0;
 if (array_key_exists('gmid',$_REQUEST))
 $groupmethodid=$_REQUEST['gmid'];
@@ -37,11 +37,11 @@ $precommands=rawurldecode($f_1[precommands]);
 $type_precommand=$f_1[type_precommand];
 
 //mysql_select_db("matlab2");
-mysql_select_db(DBName2);
+mysql_select_db(DBName);
 $r_2=mysql_query("select * from methods where id=$smethodid;");
 $f_2=mysql_fetch_array($r_2);
 $command_template=$f_2[command];
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 $r_2=mysql_query("select * from seriesgroupsconn where seriesgroupid=$sgroupid;");
 $num_res=mysql_num_rows($r_2);
 $names_array=array();
@@ -102,7 +102,7 @@ system($command);
 if (!$userar)
 chdir("..");
 system ("rm -rf tmpfolder");
-mysql_select_db(DBName2);
+mysql_select_db(DBName);
 $r=mysql_query("select max(id) as maxid from datafolder");
 if ($r)
  {
@@ -168,10 +168,10 @@ $id=$num_res2;
     $res=mysql_query($query_text);
 	mysql_query("insert into taskgroupsconn(taskid, taskgroupid) values($id,$taskgroupid)");
     echo "query=$query_text";
-    mysql_select_db(DBName);
+    mysql_select_db(DBName2);
     $query_text="insert into added_tasks( seriesid,methodid,dataid,adddate,addtime,taskid) values ($seriesid,$smethodid,$dataid,'$begcalcdate','$begcalctime',$id)";
     $res=mysql_query($query_text);
-    mysql_select_db(DBName2);
+    mysql_select_db(DBName);
     
 }
 }

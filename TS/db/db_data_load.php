@@ -54,5 +54,24 @@ mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precomm
 $commandnew="global limitdt;limitdt=260;global limitdt_min;limitdt_min=3;global type_prirash;type_prirash=1;MarkovChainsCmd('#infile.txt',1500,'#infile_MarkovPrognoz.txt');";
 $commandnew=rawurlencode($commandnew);
 
-mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(3,12,1,'$commandnew')");
+mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(3,6,1,'$commandnew')");
 
+$commandnew="sintrend_prognoz('#infile.txt','#infile_SintrendPrognoz.txt', 4, 0, 1);";
+$commandnew=rawurlencode($commandnew);
+mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(2,8,1,'$commandnew')");
+
+$commandnew="autoregr_prediction_cmd('#infile.txt','#infile_Autoregr.txt',100, 10);";
+$commandnew=rawurlencode($commandnew);
+mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(2,9,1,'$commandnew')");
+
+$commandnew="neural_predict_ret('#infile.txt',250,4,10,3);";
+$commandnew=rawurlencode($commandnew);
+mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(2,7,1,'$commandnew')");
+
+$commandnew="gritzuk_prediction_cmd('#infile.txt','#infile_GritzukForecast.txt',1000,5,0);";
+$commandnew=rawurlencode($commandnew);
+mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(2,11,1,'$commandnew')");
+
+$commandnew="gmdhdemo_autoregr('#infile.txt','#infile_autoregr.txt'1,1,10,250);";
+$commandnew=rawurlencode($commandnew);
+mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(2,13,1,'$commandnew')");
