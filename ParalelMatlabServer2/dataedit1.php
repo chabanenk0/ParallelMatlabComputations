@@ -1,4 +1,4 @@
-<?
+<?php
 include "settings.php";
 //define("DBName","matlab2");
 //define("HostName","localhost");

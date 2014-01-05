@@ -23,6 +23,22 @@ exit;
 }
 
 mysql_select_db(DBName);
+
+if (array_key_exists('firstpos',$_REQUEST))
+$firstpos=$_REQUEST['firstpos'];
+else
+$firstpos=0;
+if (array_key_exists('numrecords',$_REQUEST))
+$numrecords=$_REQUEST['numrecords'];
+else
+$numrecords=100;
+$r3=mysql_query("select count(id) as cnt from dataresult;");
+$f3=mysql_fetch_array($r3);
+$num_total=$f3['cnt'];
+//echo "f=$firstpos,n=$numrecords";
+for ($i=0;$i<$num_total;$i=$i+$numrecords)
+ echo "<a href=datareslist.php?firstpos=$i&numrecords=$numrecords>$i</a>\n";
+
 $r=mysql_query("select * from dataresult");
 $num_res=mysql_num_rows($r);
 echo '<table border=2><tr><td>#</td><td>dataid</td><td>taskid</td><td>workerid</td><td>userid</td><td>folder</td><td>Загр</td><td>удалить</td></tr>';
