@@ -1,4 +1,4 @@
-<?
+<?php
 include "settings.php";
 include "dataresunpack_fun.php";
 //define("DBName","matlab2");
