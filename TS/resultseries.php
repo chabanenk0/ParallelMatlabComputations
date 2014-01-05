@@ -28,8 +28,7 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
-require_once "head_all.php"; 
-require_once "header.php"; 
+require_once "../ParalelMatlabServer2/settings.php";
  
 $info = array(
     /**
@@ -70,7 +69,7 @@ $info = array(
     DELETE_LINK => "?action=delete&id=%id",
     VIEW_LINK => "resultseriesdata.php?filter=resultid=%id",
     CSV_LINK => "resultseriesdata.php?action=csv&columnname=c1&filter=resultid=%id",
-    PLOT_LINK => "resultseriesdata.php?action=plot&filter=resultid=%id"
+    PLOT_LINK => "resultseriesdata.php?action=plot&columnname=c1&filter=resultid=%id"
 );
 $crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"resultseries",$info);
 //print_r($_POST);
@@ -80,7 +79,8 @@ $new_id=($crud->create());
 echo "$new_id";
 return 0;
 }
-
+require_once "head_all.php"; 
+require_once "header.php"; 
 
 ?>
 <h1>CRUD for resultseries table</h1>

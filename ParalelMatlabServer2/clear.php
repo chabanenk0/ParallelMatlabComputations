@@ -111,6 +111,17 @@ echo " err".mysql_error();
 echo " <p>";
 mysql_query("insert into methodsusers(id ,userid , methodid) values(12, 1, 13)");
 
+$commandMarkov=rawurlencode("cmd('#infile.txt','#infile_result.txt');");
+$querytext="insert into methods(id, name , descr , folder ,userid,platformid,command,toolboxid, version) values(14, 'ShannonForWindow','Вычисление энтропии Шеннона (оконным способом)','Admin/methods/MGUA.rar',1,1,'$commandMarkov',14,1)";
+echo $querytext;
+$r=mysql_query($querytext);
+if ($r) 
+echo " ok"; 
+else 
+echo " err".mysql_error();
+echo " <p>";
+mysql_query("insert into methodsusers(id ,userid , methodid) values(13, 1, 14)");
+
 
 mysql_query("insert into datafolder(id, userid, descr, folder ) values(1, 1, 'No data', 'empty.rar')");
 

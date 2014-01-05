@@ -19,8 +19,9 @@ $sgid=$_GET['sgid'];
 // !!!добавить в создание матрици!!!!
 // mysql_query("DROP TABLE IF EXISTS matrixseries;");
 //mysql_query("CREATE TABLE matrixseries(matrixnum int, seriesnum int, position int,c int, firstdate DATE, firsttime TIME, lastdate DATE, lasttime TIME)");
-
-
+$r=mysql_query("select name from seriesgroups where id=$sgid;");
+$f=mysql_fetch_array($r);
+$matrixName=$f['name'];
 //$r=mysql_query("select dataseries.name as ticker, count(allrecords.tickernum) as c, seriesgroupsconn.seriesid as seriesid from dataseries,seriesgroupsconn,allrecords where ((seriesgroupsconn.seriesgroupid=$sgid) and (dataseries.id=allrecords.tickernum) and (allrecords.tickernum=seriesgroupsconn.seriesid)) group by ticker,seriesid order by c desc;");
 // 20130110
 // select seriesid from seriesgroupsconn where seriesgroupid=16;
@@ -46,7 +47,9 @@ $num_res=mysql_num_rows($r);
 
 $namearray=array();
 $idarray=array();
-mysql_query("insert into matrixdata (name, temptablename) values ('sp','sp_matrix')");
+$querytext="insert into matrixdata (name, temptablename,databasename) values ('$matrixName','".$matrixName."_matrix','".DBName2."')";
+echo $querytext;
+mysql_query($querytext);
 // в дальнейшем нужно брать из имени группы или запрашивать.
 $r1=mysql_query("select max(id) as maxid from matrixdata");
 $f1=mysql_fetch_array($r1);
@@ -71,8 +74,8 @@ for($i=1; $i<=$num_res; $i++)
 } 
 
 //То же можно перенести в создание
-mysql_query("drop table if exists matrixqueries;");
-mysql_query("create table matrixqueries(id int not null auto_increment primary key, querytext varchar(2000), querystate char(10));");
+//mysql_query("drop table if exists matrixqueries;");
+//mysql_query("create table matrixqueries(id int not null auto_increment primary key, querytext varchar(2000), querystate char(10));");
 
 //$namearray=array("A","AA","AAPL","BAC","C");
 //$num_res=40;
@@ -132,13 +135,16 @@ for($i=2; $i<$num_res; $i++)
   mysql_query("insert into matrixqueries(querytext , querystate) values ('$query2','wait');");
  if (($i==27)||($i==46))
   {
-    $query="CREATE TABLE tmp$i SELECT * FROM tmp;";
+  $query="CREATE TABLE $matrixName".$i."_matrix SELECT * FROM tmp;";
   echo "$query \n";
   $query2=rawurlencode($query);
   mysql_query("insert into matrixqueries(querytext , querystate) values ('$query2','wait');");
   // также нужно добавить добавление строк в таблицу описания каждой БД...
   if (1)
-   { mysql_query("insert into matrixdata (name, temptablename) values ('sp$i','sp$i_matrix')");
+   {
+   $querytext = "insert into matrixdata (name, temptablename, databasename) values ('$matrixName"."$i','$matrixName".$i."_matrix','".DBName2."')";
+   echo $querytext;
+   mysql_query($querytext);
    $r2=mysql_query("select max(id) as maxid from matrixdata");
    $f2=mysql_fetch_array($r2);
    if (array_key_exists('maxid',$f2))

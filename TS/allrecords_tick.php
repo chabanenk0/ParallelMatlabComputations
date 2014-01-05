@@ -28,9 +28,7 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
-require_once "head_all.php"; 
-require_once "header.php"; 
- 
+require_once "../ParalelMatlabServer2/settings.php"; 
 
 $info = array(
     /**
@@ -38,7 +36,7 @@ $info = array(
      *  Insert hide => autoincrement value, the form doesn't display on create
      *  update read only => this value couldn't be update
      */
-    //'id' => array(CAPTION => 'id', SHOWCOLUMN => true, INSERT_HIDE =>true, UPDATE_READ_ONLY => true),
+    'id' => array(CAPTION => 'id', SHOWCOLUMN => true, INSERT_HIDE =>true, UPDATE_READ_ONLY => true),
     /*
      *
      */
@@ -70,6 +68,9 @@ $info = array(
     DELETE_LINK => "?action=delete&id=%id"
 );
 $crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"allrecords_tick",$info);
+require_once "head_all.php"; 
+require_once "header.php"; 
+
 ?>
 <h1>CRUD for allrecords_tick table</h1>
 <h2><a href='?action=new'>Add a new record </a> | <a href='?'>View</a></h2>

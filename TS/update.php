@@ -1,18 +1,18 @@
-<?
+<?php
 
 include "settings.php";
 echo "Creating matrix\n";
 $basesdir=getcwd();
 echo "cwd=$basesdir<br>\n";
 if(!mysql_connect(HostName,UserName,Password))
-{ echo "Не могу соединиться с базой".DBName."!<br>";
+{ echo "Íå ìîãó ñîåäèíèòüñÿ ñ áàçîé".DBName."!<br>";
 echo mysql_error();
 exit;
 }
 mysql_select_db(DBName);
 //mysql_query("USE matrix;");
 set_time_limit(6000); 
-$sgroupid=$_REQUEST['g']; // ид группы рядов, для которых требуется посчитать прогноз.
+$sgroupid=$_REQUEST['g']; // èä ãðóïïû ðÿäîâ, äëÿ êîòîðûõ òðåáóåòñÿ ïîñ÷èòàòü ïðîãíîç.
 //if (isempty($sgroupid)) 
 //$sgroupid=1;
 echo "sgroupid=$sgroupid<p>\n";
@@ -67,8 +67,8 @@ for($j=0; $j<$num_res; $j++)
  $url4query=str_replace('@MonthEnd@',$endMonth,$url4query);
  $url4query=str_replace('@YearEnd@',$endYear,$url4query);
  echo "Downloading data from url: $url4query<p>\n";
- $command="wget  --proxy=on  -ehttp_proxy=http://192.168.0.10:3128 -O \"$curname.txt\" \"$url4query\"";
- //$command="wget -O \"$curname.txt\" \"$url4query\"";
+ //$command="wget  --proxy=on  -ehttp_proxy=http://192.168.0.10:3128 -O \"$curname.txt\" \"$url4query\"";
+ $command="wget -O \"$curname.txt\" \"$url4query\"";
 // rem set path=%path%;E:\softSince20090830\wget\wget-1.10.2b\
 //set path=%path%;I:\20120618_bases\wget-1.10.2b
  system("set path=%path%;D:\\dshared\\FromF\\wget\\wget-1.10.2b\\");
@@ -77,12 +77,20 @@ for($j=0; $j<$num_res; $j++)
  //$query1="LOAD DATA LOCAL INFILE \"$curname.txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' (name, discr, date, time, open,low,high,close,volume);";
  // for finance_yahoo_com
  //$fpath='/home/localhost/www/TS/';
- $fpath=$uploaddirroot.'/../TS';
- $query1="LOAD DATA LOCAL INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  содержит список имен полей в скобках обычным текстом. Для разных источников можно поменять...
+ $fpath=$uploaddirroot.'../TS/';
+ $osstr=php_uname();
+$osstr=substr($osstr,0,3);
+if (0)//strcmp($osstr,"Win")==0) 
+{
+
+ $fpath=str_replace('/','\\',$fpath);
+}
+// LOCAL commented...
+ $query1="LOAD DATA INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  ñîäåðæèò ñïèñîê èìåí ïîëåé â ñêîáêàõ îáû÷íûì òåêñòîì. Äëÿ ðàçíûõ èñòî÷íèêîâ ìîæíî ïîìåíÿòü...
  echo  $query1."\n";
  $res=mysql_query($query1);
  if (!$res)
- { echo "Ошибка выполнения запроса:";
+ { echo "Îøèáêà âûïîëíåíèÿ çàïðîñà:";
    echo mysql_error();
    echo "<br>\n";
  }
@@ -134,7 +142,7 @@ for($j=0; $j<$num_res; $j++)
  $query3="UPDATE dataseries set updtime='$maxtime' WHERE id=$curnum;";
  echo  $query3."<p>\n";
  mysql_query($query3);
- // нужно определить макс. дату и сохранить как дату апдейта...
+ // íóæíî îïðåäåëèòü ìàêñ. äàòó è ñîõðàíèòü êàê äàòó àïäåéòà...
  //system("unlink $curname.txt");
 } 
 

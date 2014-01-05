@@ -28,8 +28,7 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
-require_once "head_all.php"; 
-require_once "header.php"; 
+require_once "../ParalelMatlabServer2/settings.php";
 
 $info = array(
     /**
@@ -67,6 +66,9 @@ $info = array(
     DELETE_LINK => "?action=delete&id=%id"
 );
 $crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"groupsmethods",$info);
+require_once "head_all.php"; 
+require_once "header.php"; 
+
 ?>
 <h1>CRUD for GroupsMethods table</h1>
 <h2><a href='?action=new'>Add a new GroupMethods connection record</a> | <a href='?'>View</a></h2>

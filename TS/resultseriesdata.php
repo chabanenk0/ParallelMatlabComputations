@@ -30,8 +30,7 @@ error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
 require("pChart/pChart/pData.class");
 require("pChart/pChart/pChart.class");
-require_once "head_all.php"; 
-require_once "header.php"; 
+require_once "../ParalelMatlabServer2/settings.php";
 
 $info = array(
     /**
@@ -87,6 +86,9 @@ if ($_GET['action']=='csv') {
     //echo "$new_id";
     return 0;
 }
+require_once "head_all.php"; 
+require_once "header.php"; 
+
 if ($_GET['action']=='plot') {
     $filename=$_GET['filter'];
     $filename=str_replace('resultid=','',$filename);

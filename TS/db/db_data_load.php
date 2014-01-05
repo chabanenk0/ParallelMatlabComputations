@@ -75,3 +75,7 @@ mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precomm
 $commandnew="gmdhdemo_autoregr('#infile.txt','#infile_autoregr.txt'1,1,10,250);";
 $commandnew=rawurlencode($commandnew);
 mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(2,13,1,'$commandnew')");
+
+$commandnew="measurefunction='[c1,c2,c3]=shannon(y_fragment);';wind=250;methodid=12;generate_tasks('#infile.txt',measurefunction,wind,methodid);";
+$commandnew=rawurlencode($commandnew);
+mysql_query("insert into groupsmethods(groupid, methodid,type_precommand,precommands) values(1,14,1,'$commandnew')");

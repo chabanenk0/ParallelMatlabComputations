@@ -99,7 +99,7 @@ echo mysql_error();
 // - êîë-âî 
 // - íàïðàâëåíèå (áàé/ñåëë) àãðåññèâíîå
 
-mysql_query("CREATE TABLE allrecords_tick(tickernum int,date DATE, time TIME, datetimeminutes long, price DOUBLE, number DOUBLE, direction char (1))");
+mysql_query("CREATE TABLE allrecords_tick(id int not null auto_increment primary key,tickernum int,date DATE, time TIME, datetimeminutes long, price DOUBLE, number DOUBLE, direction char (1))");
 mysql_query("create index dateindex on allrecords_tick (date,time)");
 
 // òàáëèöà ãðóïï ðÿäîâ (÷òîáû çàäàâàòü çàäàíèå ïðîãíîçèðîâàòü äëÿ âñåé ãðóïïû.
@@ -141,7 +141,7 @@ mysql_query("CREATE TABLE matrixdata(id int not null auto_increment primary key,
 // - íîìåð ìàòðèöû (ñâÿçü ñ òàáëèöåé ìàòðèöû)
 // - íîìåð ðÿäà (ñâÿçü ñ òàáëèöåé îïåí-êëîóç)
 // - íîìåð ðÿäà â ìàòðèöå (öåëîå ÷èñëî)
-mysql_query("CREATE TABLE matrixseries(matrixnum int, seriesnum int, position int,c int, firstdate DATE, firsttime TIME, lastdate DATE, lasttime TIME)");
+mysql_query("CREATE TABLE matrixseries(id int not null auto_increment primary key, matrixnum int, seriesnum int, position int,c int, firstdate DATE, firsttime TIME, lastdate DATE, lasttime TIME)");
 
 mysql_query("create table matrixqueries(id int not null auto_increment primary key, querytext varchar(2000), querystate char(10));");
 

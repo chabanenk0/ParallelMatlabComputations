@@ -24,7 +24,7 @@ $mtablename='tmp27'; //!!! to be corrected!!!
 $r=mysql_query("SELECT matrixseries.matrixnum as matrixnum, matrixseries.seriesnum as seriesnum, matrixseries.position as position, dataseries.name as name, dataseries.sector as sector, dataseries.color as color FROM matrixseries,dataseries WHERE matrixseries.matrixnum=$mnum and dataseries.id=matrixseries.seriesnum order by position");
 $num_series=mysql_num_rows($r);
 
-$basefilename='sp_073';// !!!  to be corrected!!!
+$basefilename=$matrixname;//'sp_073';// !!!  to be corrected!!!
 $nmfilename=$basefilename.'.nm';
 $dtfilename=$basefilename.'.dt';
 $txtfilename=$basefilename.'.txt';

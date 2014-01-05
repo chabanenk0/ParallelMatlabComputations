@@ -28,8 +28,7 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
-require_once "head_all.php"; 
-require_once "header.php"; 
+require_once "../ParalelMatlabServer2/settings.php";
 
 $info = array(
     /**
@@ -37,10 +36,8 @@ $info = array(
      *  Insert hide => autoincrement value, the form doesn't display on create
      *  update read only => this value couldn't be update
      */
-    //'id' => array(CAPTION => 'id', SHOWCOLUMN => true, INSERT_HIDE =>true, UPDATE_READ_ONLY => true),
-    /*
-     *
-     */
+    'id' => array(CAPTION => 'id', SHOWCOLUMN => true, INSERT_HIDE =>true, UPDATE_READ_ONLY => true),    
+
     'matrixnum' => array(CAPTION => 'matrixnum', TABLE => "matrixdata", ID => "id", TEXT => "name", SHOWCOLUMN=>true),
     'seriesnum' => array(CAPTION => 'seriesnum', TABLE => "dataseries", ID => "id", TEXT => "name", SHOWCOLUMN=>true),
     'position' => array(CAPTION => 'position', SHOWCOLUMN=>true ),
@@ -71,6 +68,9 @@ $info = array(
     DELETE_LINK => "?action=delete&id=%id"
 );
 $crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"matrixseries",$info);
+require_once "head_all.php"; 
+require_once "header.php"; 
+
 ?>
 <h1>CRUD for MatrixData table</h1>
 <h2><a href='?action=new'>Add a new matrix </a> | <a href='?'>View</a></h2>

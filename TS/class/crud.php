@@ -216,7 +216,7 @@ class crud {
                 $columns[] = $k;
 				if (isset($v[ENCODE])&&($v[ENCODE])) {
 				    $_POST[$k]=rawurlencode($_POST[$k]);
-					echo "encoded:".$_POST[$k]."<br>";
+					//echo "encoded:".$_POST[$k]."<br>";
 				}
             }
             if ( $update ) {

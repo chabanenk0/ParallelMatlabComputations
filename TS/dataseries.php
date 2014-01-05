@@ -28,8 +28,7 @@
 */
 error_reporting( ~ E_NOTICE & E_ALL );
 require("class/crud.php");
-require_once "head_all.php"; 
-require_once "header.php"; 
+require_once "../ParalelMatlabServer2/settings.php";
  
 
 $info = array(
@@ -71,10 +70,18 @@ $info = array(
 
     EDIT_TEXT => "Edit",
     DELETE_TEXT => "Delete",
+	VIEW_TEXT => "View data",
+    CSV_TEXT => "Download CSV",
+    PLOT_TEXT => "View chart",
     EDIT_LINK => "?action=update&id=%id",
-    DELETE_LINK => "?action=delete&id=%id"
+    DELETE_LINK => "?action=delete&id=%id",
+    VIEW_LINK => "allrecords.php?filter=tickernum=%id",
+	CSV_LINK => "allrecords.php?action=csv&columnname=close&filter=tickernum=%id",
+    PLOT_LINK => "allrecords.php?action=plot&columnname=close&filter=tickernum=%id"
 );
 $crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"dataseries",$info);
+require_once "head_all.php"; 
+require_once "header.php"; 
 ?>
 <h1>CRUD for Dataseries table</h1>
 <h2><a href='?action=new'>Add a new dataseries</a> | <a href='?'>View</a> | <a href='?action=uploadCSV'>Upload CSV</a> </h2>
