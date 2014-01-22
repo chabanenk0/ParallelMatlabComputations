@@ -8,17 +8,18 @@ include "head_all.php";
 <?php
 include "header.php";
 ?>
+<!--
 <p><a href=db/db_recreate_all.php> очистка БД </a></p>
 <p><a href=update.php?g=2> Обновление БД </a></p>
 <p><a href=generate.php?gmid=1> Генерация архива файлов с ценами закрытия </a></p>
-<?php
-include "indexupdgen.php";
-?>
-<p><a href=UxStatOdbc.php> Статистика минутной торговли по фьючерсу УХ (из базы аксесс по ОДБС)</a></p>
-<p><a href=allrecords.php>CRUD for allrecords</a></p>
-<p><a href=allrecords_tick.php>CRUD for allrecords_tick</a></p>
-<p><a href=resultseries.php>CRUD for resultseries</a></p>
-<p><a href=resultseriesdata.php>CRUD for resultseriesdata</a></p>
+-->
+<p>Данный раздел посвящен данным, которые содержатся во временных рядах и работе с ними. Раздел предназначен в основном для просмотра и для правки единичных значений таблицы. Для более детальной настройки рядов и импорта, используйте раздел <a href='index-series.php'>"временные ряды"</a></p>
+<p><a href=dataseries.php>Настройка временных рядов </a> (в этой же таблице можно просматривать и загружать данные каждого ряда)</p>
+<p><a href=resultseries.php>Ряды результатов рассчетов</a> - позволяет просмотреть и скачать ряды, полученные в результате рассчетов, соглассно поставленным задачам.</p>
+<p><a href=resultseriesdata.php>CRUD for resultseriesdata</a> - вспомогательная таблица содержащие результаты рассчетов, доступна из вышеприведенных таблиц.</p>
+<p><a href=UxStatOdbc.php> Статистика минутной торговли по фьючерсу УХ (из базы аксесс по ОДБС)</a>- (разрабатывается) - интерфейс для локального импорта данных в БД в режиме реального времени</p>
+<p><a href=allrecords.php>CRUD for allrecords </a> - Таблица содержания каждого ряда (используется в таблицах выше)</p>
+<p><a href=allrecords_tick.php>CRUD for allrecords_tick</a>- Таблица содержания ряда тиковых значений (разрабатывается)</p>
 
 <?php
 include "footer.php";

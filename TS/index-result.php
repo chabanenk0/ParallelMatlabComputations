@@ -8,9 +8,11 @@ include "head_all.php";
 <?php
 include "header.php";
 ?>
+<p>—ледующа€ ссылка ведет на страничку, где можно посмотреть запущенные задани€ и результаты их рассчета:</p>
 <p><a href=calctasklist.php>Tasks list</a></p>
-<p><a href=resultseries.php>CRUD for resultseries</a></p>
-<p><a href=resultseriesdata.php>CRUD for resultseriesdata</a></p>
+<p>–абота с временными р€дами результатов:</p>
+<p><a href=resultseries.php>–€ды результатов рассчетов</a> - позвол€ет просмотреть и скачать р€ды, полученных в результате рассчетов, соглассно поставленным задачам.</p>
+<p><a href=resultseriesdata.php>CRUD for resultseriesdata</a> - вспомогательна€ таблица содержащие результаты рассчетов, доступна из вышеприведенных таблиц.</p>
 
 <?php
 include "footer.php";

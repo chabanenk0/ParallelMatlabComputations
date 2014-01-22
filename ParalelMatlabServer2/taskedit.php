@@ -38,7 +38,7 @@ $id=$_REQUEST['id'];
 mysql_select_db(DBName);
 //mysql_query("use tasks");
 
-echo "<form method=get action=taskedit1.php>";
+echo "<form method=post action=taskedit1.php>";
 //try  
 {
  //$ccc=$HTTP_GET_VARS['command'];
@@ -53,10 +53,10 @@ echo "number:<input type=text name=id value=$f[id]><p>";
 echo "Платформа:<input type=text name=platformid value=$f[platformid]><p>";
 // треба зробити запит по платформам, цикл виведення опцый... Все подобавляю, когда сделаю вывод соотв. баз данных.
 echo "Метод:<input type=text name=methodid value=$f[methodid]><p>";
-echo "Пакет данных:<input type=text name=dataid value=$f[dataid]><p>";
-echo "Имя файла:<input type=text name=filename value=$f[filename]><p>";
+echo "Пакет данных:<input type=text name=dataid value='$f[dataid]'><p>";
+echo "Имя файла:<input type=text name=filename value='$f[filename]'><p>";
 $command=rawurldecode($f[command]);
-echo "Команда:<input type=text name=command value=$command> ";
+echo 'Команда:<input type=text name=command value="'.$command.'"> ';
 
 echo "<p>Состояние:";
 echo "<input type=RADIO name=status value=1 checked=";
@@ -69,13 +69,13 @@ echo "<input type=RADIO name=status value=3 checked=";
 if ($f['state']=='done') echo "1"; else echo "0"; 
 echo ">done</input><p>";
 echo "Завершено:<input type=checkbox name=active value=1><p>";
-echo "IP: <input type=text name=IP value=$f[IP]><p>";
-echo "Добавил: <input type=text name=adduserid value=$f[adduserid]><p>";
-echo "Вычислитель: <input type=text name=calcuserid value=$f[calcuserid]><p>";
-echo "ИД процесса: <input type=text name=processid value=$f[processid]><p>";
-echo "Дата/время начала вычислений: <input type=text name=begcalcdate value=$f[begcalcdate]> <input type=text name=begcalctime value=$f[begcalctime]><p>";
-echo "Прогнозируемое время вычисления, мин.: <input type=text name=predictminutes value=$f[predictminutes]><p>";
-echo "Дата/время окончания вычислений: <input type=text name=endcalcdate value=$f[endcalcdate]> <input type=text name=endcalctime value=$f[endcalctime]><p>";
+echo "IP: <input type=text name=IP value='$f[IP]'><p>";
+echo "Добавил: <input type=text name=adduserid value='$f[adduserid]'><p>";
+echo "Вычислитель: <input type=text name=calcuserid value='$f[calcuserid]'><p>";
+echo "ИД процесса: <input type=text name=processid value='$f[processid]'><p>";
+echo "Дата/время начала вычислений: <input type=text name=begcalcdate value=$f[begcalcdate]> <input type=text name=begcalctime value='$f[begcalctime]'><p>";
+echo "Прогнозируемое время вычисления, мин.: <input type=text name=predictminutes value='$f[predictminutes]'><p>";
+echo "Дата/время окончания вычислений: <input type=text name=endcalcdate value='$f[endcalcdate]'> <input type=text name=endcalctime value='$f[endcalctime]'><p>";
 
 echo "<input type=submit value='Сохранить'> <input type=reset value='Очистить'><p><p>";
 }

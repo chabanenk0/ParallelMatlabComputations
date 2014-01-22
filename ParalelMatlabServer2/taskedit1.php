@@ -83,7 +83,7 @@ else {$state='done'; $done=100;}
  mysql_query("update tasks set endcalcdate='$endcalcdate' where id=$id");
  mysql_query("update tasks set endcalctime='$endcalctime' where id=$id");
  mysql_query("update tasks set predictminutes='$predictminutes' where id=$id");
- header('Location: tasklist.php');
+ header('Location: tasklist2.php');
  //echo "update tasks set command=$command, state=$state, done=$done, IP='$IP' where id=$id";
   }
 ?>

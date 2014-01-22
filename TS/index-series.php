@@ -8,19 +8,25 @@ include "head_all.php";
 <?php
 include "header.php";
 ?>
+<!--
 <p><a href=db/db_recreate_all.php> очистка БД </a></p>
 <p><a href=update.php?g=2> Обновление БД </a></p>
 <p><a href=generate.php?gmid=1> Генерация архива файлов с ценами закрытия </a></p>
+-->
+<p> Данный раздел посвящен данным временных рядов, их источникам (веб-сайтам, которые предоставляют csv-таблицы биржевой статистики), а также интерфейс для обновления данных и генерации заданий для рассчета.</p>
+<p> Для обновления рядов используйте одну из ниже перечисленных ссылок: </p>
 <?php
 include "indexupdgen.php";
 ?>
 <p><a href=UxStatOdbc.php> Статистика минутной торговли по фьючерсу УХ (из базы аксесс по ОДБС)</a></p>
+<p>Следующая ссылка ведет на страничку, где можно посмотреть запущенные задания и результаты их рассчета:</p>
 <p><a href=calctasklist.php>Tasks list</a></p>
-<p><a href=datasources.php>CRUD for datasources</a></p>
-<p><a href=dataseries.php>CRUD for dataseries</a></p>
-<p><a href=seriesgroups.php>CRUD for seriesgroups</a></p>
-<p><a href=seriesgroupsconn.php>CRUD for seriesgroupsconn</a></p>
-<p><a href=groupsmethods.php>CRUD for groupsmethods connection table</a></p>
+<p>Следующий раздел позволяет настраивать источники данных, добавлять/изменять временные ряды, создавать и редактировать группы рядов, которые именно будут отображаться выше для обновления или запуска на прогноз.</p>
+<p><a href=datasources.php>Настройка источников данных</a></p>
+<p><a href=dataseries.php>Настройка временных рядов </a> (в этой же таблице можно просматривать и загружать данные каждого ряда)</p>
+<p><a href=seriesgroups.php>Добавление/изменение групп рядов</a> (в этой же таблице можно добавлять/удалять ряды в группах) </p>
+<p><a href=seriesgroupsconn.php>CRUD for seriesgroupsconn </a>(вспомогательная таблица задающая связи групп с рядами)</p>
+<p><a href=groupsmethods.php>CRUD for groupsmethods </a> (вспомогательная таблица, задающая какие группы рядов какими методами анализировать (влияет на список задач для запуска)</p>
 
 <?php
 include "footer.php";
