@@ -71,7 +71,7 @@ $info = array(
     CSV_LINK => "resultseriesdata.php?action=csv&columnname=c1&filter=resultid=%id",
     PLOT_LINK => "resultseriesdata.php?action=plot&columnname=c1&filter=resultid=%id"
 );
-$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"resultseries",$info);
+$crud = new crud("mysql://".UserName.":".Password."@".HostName."/".DBName2,"resultseries",$info);
 //print_r($_POST);
 if (($_GET['action']=='new')&&(array_key_exists('name',$_POST)))
           {

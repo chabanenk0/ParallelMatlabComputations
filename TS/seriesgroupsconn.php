@@ -62,7 +62,7 @@ $info = array(
     EDIT_LINK => "?action=update&id=%id",
     DELETE_LINK => "?action=delete&id=%id"
 );
-$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"seriesgroupsconn",$info);
+$crud = new crud("mysql://".UserName.":".Password."@".HostName."/".DBName2,"seriesgroupsconn",$info);
 require_once "head_all.php"; 
 require_once "header.php"; 
 

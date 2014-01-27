@@ -79,7 +79,7 @@ $info = array(
 	CSV_LINK => "allrecords.php?action=csv&columnname=close&filter=tickernum=%id",
     PLOT_LINK => "allrecords.php?action=plot&columnname=close&filter=tickernum=%id"
 );
-$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"dataseries",$info);
+$crud = new crud("mysql://".UserName.":".Password."@".HostName."/".DBName2,"dataseries",$info);
 require_once "head_all.php"; 
 require_once "header.php"; 
 ?>

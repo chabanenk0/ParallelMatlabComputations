@@ -72,7 +72,7 @@ $info = array(
 	CSV_LINK => "save_matrix.php?mnum=%id",
 	VIEW_LINK => "matrixseries.php?filter=matrixnum=%id"
 );
-$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"matrixdata",$info);
+$crud = new crud("mysql://".UserName.":".Password."@".HostName."/".DBName2,"matrixdata",$info);
 require_once "head_all.php"; 
 require_once "header.php"; 
 

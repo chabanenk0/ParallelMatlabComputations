@@ -64,5 +64,5 @@ for($i=0; $i<$num_res; $i++)
   mysql_query("update tasks set state='wait' where id=$f[id]");
 }
 //echo '</table>';
-header('Location: tasklist.php');
+header('Location: tasklist2.php');
 ?>

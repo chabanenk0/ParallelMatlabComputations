@@ -39,7 +39,7 @@ $num_total=$f3['cnt'];
 for ($i=0;$i<$num_total;$i=$i+$numrecords)
  echo "<a href=datareslist.php?firstpos=$i&numrecords=$numrecords>$i</a>\n";
 
-$r=mysql_query("select * from dataresult");
+$r=mysql_query("select * from dataresult order by id limit $firstpos,$numrecords;");
 $num_res=mysql_num_rows($r);
 echo '<table border=2><tr><td>#</td><td>dataid</td><td>taskid</td><td>workerid</td><td>userid</td><td>folder</td><td>Загр</td><td>удалить</td></tr>';
 for($i=0; $i<$num_res; $i++)            
@@ -50,7 +50,7 @@ echo '</table>';
 //(id int, platformid int, methodid int, dataid int, filename char(50), command char(200), state char(30), done int, outfilename char(50), IP char(20), adduserid int, calcuserid int, processid int, begcalcdate date, begcalctime time , predictminutes int ,  endcalcdate date,  endcalctime time)
 ?>
 
-1) <a href=tasklist.php>Просмотр текущих заданий</a><p>
+1) <a href=tasklist2.php>Просмотр текущих заданий</a><p>
 2) <a href=dataadd.php>Добавить новый пакет данных</a><p>
 
 <?php

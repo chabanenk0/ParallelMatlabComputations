@@ -55,5 +55,5 @@ exit;
 if ($id>=0) $r=mysql_query("delete from tasks where adduserid=$id");
 else
 $r=mysql_query("delete from tasks ");
-header('Location: tasklist.php');
+header('Location: tasklist2.php');
 ?>

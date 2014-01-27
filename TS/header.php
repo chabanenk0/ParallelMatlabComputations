@@ -1,6 +1,6 @@
 <?php
-include "../ParalelMatlabServer2/settings.php";
-include "../ParalelMatlabServer2/bcrypt.php";
+require_once "../ParalelMatlabServer2/settings.php";
+require_once "../ParalelMatlabServer2/bcrypt.php";
 if(!mysql_connect(HostName,UserName,Password))
 { echo "Не могу соединиться с базой".DBName."!<br>";
 echo mysql_error();
@@ -29,6 +29,7 @@ else {$auth=0;$uid_cookie=0;}
 
 $uname=$f['name']." ".$f['surname'];
 if (strcmp($uname,"")==0)$uname=$f['login'];
+ mysql_select_db(DBName2);
 ?>
 
 

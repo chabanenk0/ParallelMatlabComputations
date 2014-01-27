@@ -99,7 +99,7 @@ while ($tok)
 }
 //for ($i=$id;$i<$id+$num_new;i++)
 //  mysql_query("insert into tasks(id, command,state,done,IP) values($id, '$command','wait',0,'0.0.0.0')");
- header('Location: tasklist.php');
+ header('Location: tasklist2.php');
 exit;
 
 ?>

@@ -206,7 +206,7 @@ echo "<option value=0 $typeselect2 >Обычный пользователь</option>";
 </select>
 <p>
 <input type=submit value='Сохранить'> <input type=reset value='Очистить'></form><p><p>
-1) <a href=tasklist.php>Просмотр текущих заданий</a><p>
+1) <a href=tasklist2.php>Просмотр текущих заданий</a><p>
 2) <a href=taskaddmany.php>Добавление задания</a><p>
 3) <a href=clear.php>Очистка списка заданий</a><p>
 

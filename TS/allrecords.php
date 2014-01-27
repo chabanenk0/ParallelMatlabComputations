@@ -74,7 +74,7 @@ $info = array(
     EDIT_LINK => "?action=update&id=%id",
     DELETE_LINK => "?action=delete&id=%id"
 );
-$crud = new crud("mysql://".UserName."@".HostName."/".DBName2,"allrecords",$info);
+$crud = new crud("mysql://".UserName.":".Password."@".HostName."/".DBName2,"allrecords",$info);
 if (($_GET['action']=='new')&&(array_key_exists('c1',$_POST))) {
     $new_id=($crud->create());
     echo "$new_id";

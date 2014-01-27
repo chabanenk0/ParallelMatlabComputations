@@ -46,5 +46,5 @@ exit;
 }
 
   mysql_query("delete from tasks where id=$id");
-header('Location: tasklist.php');
+header('Location: tasklist2.php');
 ?>

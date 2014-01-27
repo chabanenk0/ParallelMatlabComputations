@@ -39,7 +39,7 @@ catch (Exception $e){}
 Команда:<input type=text name=command>
 <input type=submit value="Добавить">
 </form>
-1) <a href=tasklist.php>Просмотр текущих заданий</a><p>
+1) <a href=tasklist2.php>Просмотр текущих заданий</a><p>
 2) <a href=add.php>Добавление задания</a><p>
 3) <a href=clear.php>Очистка списка заданий</a><p>
 4) <a href=../>Homepage</a><p>

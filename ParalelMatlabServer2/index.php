@@ -17,7 +17,7 @@ include "header.php";
 <p class="lead">Также на сервере можно размещать <a href=datalist.php>данные</a>, предназначенные для прогнозирования. </p>
 
 <p class="lead">Операции, доступные без регистрации:</p>
-1) <a href=tasklist.php>Просмотр текущих заданий;</a><p>
+1) <a href=tasklist2.php>Просмотр текущих заданий;</a><p>
 2) <a href=methodslist.php>Просмотр доступных методов прогнозирования;</a><p>
 3) <a href=http://prognoz.ck.ua/paralelMatlabClient20111003.rar>Скачать рассчетный клиент для Matlab;</a><p>
 

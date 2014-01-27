@@ -1,6 +1,7 @@
 <?php
 
-include "settings.php";
+require_once "../ParalelMatlabServer2/settings.php";
+//include "settings.php";
 echo "Creating matrix\n";
 $basesdir=getcwd();
 echo "cwd=$basesdir<br>\n";
@@ -9,7 +10,7 @@ if(!mysql_connect(HostName,UserName,Password))
 echo mysql_error();
 exit;
 }
-mysql_select_db(DBName);
+mysql_select_db(DBName2);
 //mysql_query("USE matrix;");
 set_time_limit(6000); 
 $sgroupid=$_REQUEST['g']; // èä ãðóïïû ðÿäîâ, äëÿ êîòîðûõ òðåáóåòñÿ ïîñ÷èòàòü ïðîãíîç.
@@ -85,8 +86,15 @@ if (0)//strcmp($osstr,"Win")==0)
 
  $fpath=str_replace('/','\\',$fpath);
 }
+if (strcmp($osstr,"Win")==0)) {
+    $local_command="LOCAL";
+}
+else {
+    $local_command="";
+}
+
 // LOCAL commented...
- $query1="LOAD DATA INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  ñîäåðæèò ñïèñîê èìåí ïîëåé â ñêîáêàõ îáû÷íûì òåêñòîì. Äëÿ ðàçíûõ èñòî÷íèêîâ ìîæíî ïîìåíÿòü...
+ $query1="LOAD DATA $local_command INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  ñîäåðæèò ñïèñîê èìåí ïîëåé â ñêîáêàõ îáû÷íûì òåêñòîì. Äëÿ ðàçíûõ èñòî÷íèêîâ ìîæíî ïîìåíÿòü...
  echo  $query1."\n";
  $res=mysql_query($query1);
  if (!$res)

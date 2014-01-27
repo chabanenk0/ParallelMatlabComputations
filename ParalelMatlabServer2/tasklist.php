@@ -40,7 +40,7 @@ echo "<td>--</td><td>--</td></tr>\n";
 }
 echo '</table>';
 //(id int, platformid int, methodid int, dataid int, filename char(50), command char(200), state char(30), done int, outfilename char(50), IP char(20), adduserid int, calcuserid int, processid int, begcalcdate date, begcalctime time , predictminutes int ,  endcalcdate date,  endcalctime time)
-echo "1) <a href=tasklist.php>Просмотр текущих заданий</a><p>";
+echo "1) <a href=tasklist2.php>Просмотр текущих заданий</a><p>";
 if ($auth==1)
 {
 echo "2) <a href=taskaddmany.php>Добавление нескольких заданий</a><p>";
