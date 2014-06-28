@@ -20,7 +20,7 @@ function db_data_load_matr($name, $description,$listfilename,$src)
 	// mysql_query("insert into dataseries2 (name, number,groupnum, source,upddate,updtime, type, discretization,seriesname) select name, number,groupnum, source,upddate,updtime, type, discretization,seriesname from dataseries;");
 	// mysql_query("drop table dataseries;");
 	// mysql_query("alter table dataseries2 rename to dataseries;");
-	mysql_query("create table tmp_dataseries(name char(20), number int,seriesname char(30), sector char(20), color int)");
+	mysql_query("create table tmp_dataseries(name char(20), number int,seriesname char(70), sector char(20), color int)");
 	$res=mysql_query("LOAD DATA LOCAL INFILE '$listfilename' INTO TABLE tmp_dataseries;");
 	 if (!$res)
 	  {

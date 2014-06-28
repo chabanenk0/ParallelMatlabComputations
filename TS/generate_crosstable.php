@@ -14,6 +14,7 @@ exit;
 //mysql_query("USE matrix;");
 mysql_select_db(DBName2);
 $sgid=$_GET['sgid'];
+$closefieldname='close';
 //$r=mysql_query("select * from allnames");
 
 // !!!добавить в создание матрици!!!!
@@ -92,8 +93,8 @@ $query= "DROP TABLE IF EXISTS tmp1;";
 $r=mysql_query($query);
 
 $query= "CREATE TABLE tmp SELECT ";
-$query=$query."t_".$namearray[0].".date, t_".$namearray[0].".close as ".$namearray[0];
-$query=$query.",t_".$namearray[1].".close as ".$namearray[1]."\n";
+$query=$query."t_".$namearray[0].".date, t_".$namearray[0].".$closefieldname as ".$namearray[0];
+$query=$query.",t_".$namearray[1].".$closefieldname as ".$namearray[1]."\n";
 $query=$query." FROM allrecords AS t_".$namearray[0]."\n";
 $query=$query." LEFT JOIN allrecords AS t_".$namearray[1];
 $query=$query." ON t_".$namearray[0].".date=t_".$namearray[1].".date \n";
@@ -111,7 +112,7 @@ mysql_query("insert into matrixqueries(querytext , querystate) values ('$query2'
 
 for($i=2; $i<$num_res; $i++)
  {$query="CREATE TABLE tmp1\n SELECT tmp.*, ";
-  $query=$query."t_".$namearray[$i].".close AS ".$namearray[$i]."\n";
+  $query=$query."t_".$namearray[$i].".$closefieldname AS ".$namearray[$i]."\n";
   $query=$query."FROM tmp left join allrecords as t_".$namearray[$i]." on tmp.date=t_".$namearray[$i].".date\n";
   $query=$query."WHERE  t_".$namearray[$i].".tickernum='".$idarray[$i]."' ;";
   echo "\n$query \n";
@@ -133,7 +134,7 @@ for($i=2; $i<$num_res; $i++)
   echo "$query \n";
   $query2=rawurlencode($query);
   mysql_query("insert into matrixqueries(querytext , querystate) values ('$query2','wait');");
- if (($i==27)||($i==46))
+ if (($i==27)||($i==46)||($i==5)||($i==14)||($i==20))
   {
   $query="CREATE TABLE $matrixName".$i."_matrix SELECT * FROM tmp;";
   echo "$query \n";

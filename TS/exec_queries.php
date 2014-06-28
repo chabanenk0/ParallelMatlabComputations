@@ -10,7 +10,7 @@ if(!mysql_connect(HostName,UserName,Password))
 echo mysql_error();
 exit;
 }
-set_time_limit(6000); 
+set_time_limit(60000); 
 //mysql_query("USE matrix;");
 mysql_select_db(DBName2);
 $count=100;

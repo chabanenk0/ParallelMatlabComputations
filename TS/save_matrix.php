@@ -20,7 +20,7 @@ $r=mysql_query("select * from matrixdata where id=$mnum;");
 $f=mysql_fetch_array($r);
 $matrixname=$f['name'];
 $mtablename=$f['temptablename'];
-$mtablename='tmp27'; //!!! to be corrected!!!
+$mtablename='tmp'; //!!! to be corrected!!!
 $r=mysql_query("SELECT matrixseries.matrixnum as matrixnum, matrixseries.seriesnum as seriesnum, matrixseries.position as position, dataseries.name as name, dataseries.sector as sector, dataseries.color as color FROM matrixseries,dataseries WHERE matrixseries.matrixnum=$mnum and dataseries.id=matrixseries.seriesnum order by position");
 $num_series=mysql_num_rows($r);
 

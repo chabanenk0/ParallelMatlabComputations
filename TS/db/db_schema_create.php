@@ -61,12 +61,12 @@ echo "Creating tables";
 // - âèä (îïåí êëîóç èëè ïîòîê ñäåëîê (òèêîâûé èñòî÷íèê)
 // - ñòðîêà èìïîðòà (çàäàåò ïîðÿäîê ñòðîê, ïðîïóñêè ñòðîê â èñõîäíèêå)... Áóäó âðó÷íóþ çàäàâàòü ñíà÷àëà.
 // Èìïîðòêâåðè  ñîäåðæèò òîëüêî ïîñëåäíþþ ñòðîêó çàïðîñà, îòâå÷àþùóþ çà ïîñëåäîâàòåëüíîñòü ïîëåé...
-mysql_query("create table datasources(id int not null auto_increment primary key, name char(20), number int, groupnum int, urltemplate varchar (200), importquery varchar(200))");
+mysql_query("create table datasources(id int not null auto_increment primary key, name char(20), number int, groupnum int, urltemplate varchar (200), importquery varchar(200), dateformat varchar(30), delimiter varchar(1))");
 
 // old 20131105 
 //mysql_query("create table dataseries(id int not null auto_increment primary key, name char(20), number int, groupnum int, source int, upddate date , updtime time, type int, discretization int, seriesname char(30))");
 
-mysql_query("create table dataseries(id int not null auto_increment primary key, name char(20), number int, groupnum int, source int, upddate date , updtime time, type int, discretization int, seriesname char(30), sector char(20), color int)");
+mysql_query("create table dataseries(id int not null auto_increment primary key, name char(20), number int, groupnum int, source int, upddate date , updtime time, type int, discretization int, seriesname char(70), sector char(20), color int)");
 
 
 mysql_query("create table seriesgroupsconn(id int not null auto_increment primary key, seriesid int, seriesgroupid int)");

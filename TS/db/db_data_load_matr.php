@@ -17,4 +17,6 @@ db_data_load_matr('dax_matr', 'dax matrix','/home/localhost/www/TS/db/DAX.txt',$
 db_data_load_matr('FTSE_matr', 'dax matrix','/home/localhost/www/TS/db/FTSE.txt',$src);
 $src=2;
 db_data_load_matr('ux_matr', 'UX matrix','/home/localhost/www/TS/db/ux.txt',$src);
+$src=8;
+db_data_load_matr('pfts_matr', 'PFTS matrix','/home/localhost/www/TS/db/pfts.txt',$src);
 ?>

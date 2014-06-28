@@ -30,14 +30,22 @@ for($j=0; $j<$num_res; $j++)
  $curname=$f[name];
  $curnum=$f[id];
  $curname=substr($curname,0,strlen($curname));
+ $curFullName=$f[seriesname];
+ $curFullName=substr($curFullName,0,strlen($curFullName));
  $cursource=$f[source];
  $r1=mysql_query("select * from datasources where id=$cursource");
  $f1=mysql_fetch_array($r1);
  $url4query=$f1['urltemplate'];
  $importquery=$f1['importquery'];
- if (strlen ($importquery)<1) {
-     $importquery='(name, discr, date, time, open,low,high,close,volume)';
+ $dateformat=$f1['dateformat'];
+ $delimiter=$f1['delimiter'];
+  if (strlen ($importquery)<1) {
+     $importquery='(name, discr, @date_variable, time, open,low,high,close,volume)';
  }
+ if (strlen ($dateformat)<1) {
+     $dateformat='%Y-%m-%d';
+ }
+ 
   $upddate=$f[upddate];
  $updtime=$f[updtime];
  $updday=substr($upddate,8,2);
@@ -51,6 +59,7 @@ for($j=0; $j<$num_res; $j++)
 // mysql_query("insert into datasources(name , number,groupnum, urltemplate,  importquery) values( 'UX',1,1,'mdata.ux.ua/qdata.aspx?code=@NAME@&pb=@DayBeg@@MonthBeg@@YearBeg@&pe=@DayEnd@@MonthEnd@@YearEnd@&p=1440&mk=2&ext=0&sep=2&div=2&df=5&tf=2&ih=1','')");
 
  $url4query=str_replace('@NAME@',$curname,$url4query);
+ $url4query=str_replace('@FullName@',$curFullName,$url4query);
  $url4query=str_replace('@DayBeg@',$updday,$url4query);
  $url4query=str_replace('@MonthBeg@',$updmonth,$url4query);
  $url4query=str_replace('@YearBeg@',$updyear,$url4query);
@@ -68,8 +77,8 @@ for($j=0; $j<$num_res; $j++)
  $url4query=str_replace('@MonthEnd@',$endMonth,$url4query);
  $url4query=str_replace('@YearEnd@',$endYear,$url4query);
  echo "Downloading data from url: $url4query<p>\n";
- //$command="wget  --proxy=on  -ehttp_proxy=http://192.168.0.10:3128 -O \"$curname.txt\" \"$url4query\"";
- $command="wget -O \"$curname.txt\" \"$url4query\"";
+ $command="wget  --proxy=on  -ehttp_proxy=http://192.168.0.10:3128 -O \"$curname.txt\" \"$url4query\"";
+ //$command="wget -O \"$curname.txt\" \"$url4query\"";
 // rem set path=%path%;E:\softSince20090830\wget\wget-1.10.2b\
 //set path=%path%;I:\20120618_bases\wget-1.10.2b
  system("set path=%path%;D:\\dshared\\FromF\\wget\\wget-1.10.2b\\");
@@ -86,7 +95,7 @@ if (0)//strcmp($osstr,"Win")==0)
 
  $fpath=str_replace('/','\\',$fpath);
 }
-if (strcmp($osstr,"Win")==0)) {
+if (strcmp($osstr,"Win")==0) {
     $local_command="LOCAL";
 }
 else {
@@ -94,7 +103,7 @@ else {
 }
 
 // LOCAL commented...
- $query1="LOAD DATA $local_command INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY ',' $importquery ;"; // $importquery  ñîäåðæèò ñïèñîê èìåí ïîëåé â ñêîáêàõ îáû÷íûì òåêñòîì. Äëÿ ðàçíûõ èñòî÷íèêîâ ìîæíî ïîìåíÿòü...
+ $query1="LOAD DATA $local_command INFILE \"".$fpath.$curname.".txt\" INTO TABLE allrecords FIELDS TERMINATED BY '$delimiter' $importquery SET date = STR_TO_DATE(@date_variable, '$dateformat') ;"; // $importquery  ñîäåðæèò ñïèñîê èìåí ïîëåé â ñêîáêàõ îáû÷íûì òåêñòîì. Äëÿ ðàçíûõ èñòî÷íèêîâ ìîæíî ïîìåíÿòü...
  echo  $query1."\n";
  $res=mysql_query($query1);
  if (!$res)
