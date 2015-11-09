@@ -86,7 +86,7 @@ if (0)//strcmp($osstr,"Win")==0)
 
  $fpath=str_replace('/','\\',$fpath);
 }
-if (strcmp($osstr,"Win")==0)) {
+if (strcmp($osstr,"Win")==0) {
     $local_command="LOCAL";
 }
 else {
